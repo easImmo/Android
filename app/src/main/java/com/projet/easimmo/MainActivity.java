@@ -14,11 +14,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.vbernard.easimmo.R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(com.vbernard.easimmo.R.id.toolbar);
+        setContentView(com.projet.easimmo.R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(com.projet.easimmo.R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(com.vbernard.easimmo.R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(com.projet.easimmo.R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(com.vbernard.easimmo.R.menu.menu_main, menu);
+        getMenuInflater().inflate(com.projet.easimmo.R.menu.menu_main, menu);
         return true;
     }
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == com.vbernard.easimmo.R.id.action_settings) {
+        if (id == com.projet.easimmo.R.id.action_settings) {
             return true;
         }
 

@@ -23,7 +23,7 @@ public final class ServiceGenerator {
                     .setLevel(HttpLoggingInterceptor.Level.BODY));
 
             sRetrofit = new Retrofit.Builder()
-                    .baseUrl("urlNico")
+                    .baseUrl("http://easimmoapi.nicolasdu.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient.build())
                     .build();

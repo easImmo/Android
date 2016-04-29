@@ -4,6 +4,7 @@ package com.projet.easimmo.service.manager;
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.EquipmentTypeDTO;
 import com.projet.easimmo.dto.RoomTypeDTO;
+import com.projet.easimmo.dto.UserDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.IServices;
 import com.projet.easimmo.service.generator.ServiceGenerator;
@@ -25,17 +26,17 @@ public class ServiceUser {
         mService = ServiceGenerator.createService(IServices.class);
     }
 
-    public void login(final ICallback<List<EquipmentStateDTO>> callback) {
-        final Call<List<EquipmentStateDTO>> call = mService.getEquipmentStates();
-        call.enqueue(new Callback<List<EquipmentStateDTO>>() {
-            @Override public void onResponse(Call<List<EquipmentStateDTO>> call,
-                                             Response<List<EquipmentStateDTO>> response) {
+    public void login(String email, String password, final ICallback<UserDTO> callback) {
+        final Call<UserDTO> call = mService.login(email,password);
+        call.enqueue(new Callback<UserDTO>() {
+            @Override public void onResponse(Call<UserDTO> call,
+                                             Response<UserDTO> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.success(response.body());
                 }
             }
 
-            @Override public void onFailure(Call<List<EquipmentStateDTO>> call, Throwable t) {
+            @Override public void onFailure(Call<UserDTO> call, Throwable t) {
                 callback.failure(t);
             }
         });

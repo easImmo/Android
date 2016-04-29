@@ -23,7 +23,8 @@ public class ExampleUnitTest {
         List<EquipmentStateDTO> test = list.execute().body();
         assertEquals("Test taille de la liste ",3,test.size());
         for(EquipmentStateDTO dto : test){
-            System.out.println(dto.getmName());
+            System.out.println("Name: "+ dto.getmName());
+            System.out.println("id: "+dto.getmId());
         }
     }
 }

@@ -15,8 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projet.easimmo.dto.EquipmentStateDTO;
+import com.projet.easimmo.dto.UserDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceManager;
+import com.projet.easimmo.service.manager.ServiceUser;
 
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.link_signup)
     TextView _signupLink;
 
-    private ServiceManager serviceManager;
+    private ServiceUser serviceUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 login();
             }
         });
-        serviceManager = new ServiceManager();
+        serviceUser = new ServiceUser();
 
     }
 
@@ -74,12 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: Implement your own authentication logic here.
         //A REMPLACER PAR LE WS DE Login
-        serviceManager.getEquipmentStates(new ICallback<List<EquipmentStateDTO>>() {
-            @Override public void success(List<EquipmentStateDTO> list) {
-                System.out.println("TEST");
-                for(EquipmentStateDTO e:list){
-                    System.out.println("NOM: "+e.getmName());
-                }
+        serviceUser.login(email, password, new ICallback<UserDTO>() {
+            @Override public void success(UserDTO userDTO) {
+                System.out.println(userDTO);
+                System.out.println(userDTO.getmId());
             }
 
             @Override public void failure(Throwable error) {

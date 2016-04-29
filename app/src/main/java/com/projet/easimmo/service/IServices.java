@@ -5,11 +5,15 @@ import com.projet.easimmo.dto.EquipmentTypeDTO;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.ReportDTO;
 import com.projet.easimmo.dto.RoomTypeDTO;
+import com.projet.easimmo.dto.UserDTO;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -34,6 +38,10 @@ public interface IServices {
 
     @GET("EquipmentTypes")
     Call<List<EquipmentTypeDTO>> getEquipmentTypes();
+
+    @FormUrlEncoded
+    @POST("users/login")
+    Call<UserDTO> login(@Field("email") String email, @Field("password") String password);
 
 }
 

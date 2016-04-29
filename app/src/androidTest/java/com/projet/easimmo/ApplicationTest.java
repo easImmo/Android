@@ -1,4 +1,4 @@
-package com.vbernard.easimmo;
+package com.projet.easimmo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

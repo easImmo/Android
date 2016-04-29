@@ -14,6 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.projet.easimmo.dto.EquipmentStateDTO;
+import com.projet.easimmo.service.ICallback;
+import com.projet.easimmo.service.manager.ServiceManager;
+
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -29,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.link_signup)
     TextView _signupLink;
 
+    private ServiceManager serviceManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 login();
             }
         });
+        serviceManager = new ServiceManager();
 
     }
 
@@ -64,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
 
         // TODO: Implement your own authentication logic here.
+        //A REMPLACER PAR LE WS DE Login
+        serviceManager.getEquipmentStates(new ICallback<List<EquipmentStateDTO>>() {
+            @Override public void success(List<EquipmentStateDTO> list) {
+                System.out.println("TEST");
+                for(EquipmentStateDTO e:list){
+                    System.out.println("NOM: "+e.getmName());
+                }
+            }
+
+            @Override public void failure(Throwable error) {
+
+            }
+        });
 
         new android.os.Handler().postDelayed(
                 new Runnable() {

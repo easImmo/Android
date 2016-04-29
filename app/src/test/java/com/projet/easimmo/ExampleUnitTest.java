@@ -1,4 +1,4 @@
-package com.vbernard.easimmo;
+package com.projet.easimmo;
 
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.service.IServices;
@@ -22,5 +22,8 @@ public class ExampleUnitTest {
         Call<List<EquipmentStateDTO>> list = services.getEquipmentStates();
         List<EquipmentStateDTO> test = list.execute().body();
         assertEquals("Test taille de la liste ",3,test.size());
+        for(EquipmentStateDTO dto : test){
+            System.out.println(dto.getmName());
+        }
     }
 }

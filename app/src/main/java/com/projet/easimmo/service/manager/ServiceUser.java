@@ -34,6 +34,10 @@ public class ServiceUser {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.success(response.body());
                 }
+                else if(response.code() == 401){
+                    callback.unauthorized();
+                    //System.out.println("FAILURE*************************");
+                }
             }
 
             @Override public void onFailure(Call<UserDTO> call, Throwable t) {

@@ -24,6 +24,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     Button _loginButton;
     @Bind(R.id.link_signup)
     TextView _signupLink;
+
+    String email,password;
 
     private ServiceUser serviceUser;
 
@@ -71,31 +74,33 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("Authentification...");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-
-        // TODO: Implement your own authentication logic here.
-        //A REMPLACER PAR LE WS DE Login
-        serviceUser.login(email, password, new ICallback<UserDTO>() {
-            @Override public void success(UserDTO userDTO) {
-                System.out.println(userDTO);
-                System.out.println(userDTO.getmId());
-            }
-
-            @Override public void failure(Throwable error) {
-
-            }
-        });
+         email = _emailText.getText().toString();
+         password = _passwordText.getText().toString();
 
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        onLoginSuccess();
-                        // onLoginFailed();
+
+                        System.out.println("TEST ENTREE");
+                        serviceUser.login(email, password, new ICallback<UserDTO>() {
+
+                            @Override public void success(UserDTO userDTO) {
+                                System.out.println(userDTO);
+                                System.out.println(userDTO.getmId());
+                            }
+
+                            @Override public void failure(Throwable error) {
+                                onLoginFailed();
+                            }
+
+                            @Override
+                            public void unauthorized() {
+                                onLoginFailed();
+                            }
+                        });
                         progressDialog.dismiss();
                     }
-                }, 3000);
+                }, 1500);
     }
 
     public void onLoginSuccess() {
@@ -128,8 +133,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             _passwordText.setError(null);
         }
-
-        /**@Todo: Call WS login**/
 
         return valid;
     }

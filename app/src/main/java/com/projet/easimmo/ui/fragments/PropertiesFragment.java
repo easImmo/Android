@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.projet.easimmo.R;
 import com.projet.easimmo.common.adapter.PropertyAdapter;
+import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.common.util.ItemClickSupport;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.UserDTO;
@@ -50,7 +51,9 @@ public class PropertiesFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
-        idUser = getActivity().getIntent().getStringExtra("userId");
+        GlobalVar g = (GlobalVar)getActivity().getApplication();
+        idUser = g.getIdUser();
+        System.out.println("********************************************* "+idUser);
         serviceProperties = new ServiceProperties();
         serviceProperties.getPropertiesUser(idUser,new ICallback<List<PropertyDTO>>() {
 

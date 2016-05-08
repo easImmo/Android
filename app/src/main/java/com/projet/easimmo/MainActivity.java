@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.UserDTO;
 import com.projet.easimmo.service.ICallback;
@@ -110,7 +111,9 @@ public class MainActivity extends AppCompatActivity {
         _loginButton.setEnabled(true);
         finish();
         Intent intent = new Intent(this, PropertiesActivity.class);
-        intent.putExtra("userId", id);
+        //intent.putExtra("userId", id);
+        GlobalVar g = (GlobalVar)getApplication();
+        g.setIdUser(id);
         startActivity(intent);
     }
 

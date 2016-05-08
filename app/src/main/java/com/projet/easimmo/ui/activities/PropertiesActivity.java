@@ -8,8 +8,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.projet.easimmo.R;
+import com.projet.easimmo.dto.PropertyDTO;
+import com.projet.easimmo.ui.fragments.PropertiesFragment;
 
-public class PropertiesActivity extends AppCompatActivity {
+public class PropertiesActivity extends AppCompatActivity implements PropertiesFragment.PropertyListCallback{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +19,8 @@ public class PropertiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_properties);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Mes logements");
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -28,4 +32,8 @@ public class PropertiesActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemSelected(PropertyDTO propertyDTO) {
+
+    }
 }

@@ -7,7 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public class EquipmentDTO {
 
-    @SerializedName("_id")
+    @SerializedName("_" +
+            "id")
     private String mId;
     @SerializedName("room")
     private RoomDTO roomDTO;

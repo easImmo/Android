@@ -1,6 +1,7 @@
 package com.projet.easimmo;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import com.projet.easimmo.dto.UserDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceManager;
 import com.projet.easimmo.service.manager.ServiceUser;
+import com.projet.easimmo.ui.activities.PropertiesActivity;
 
 import java.util.List;
 
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override public void success(UserDTO userDTO) {
                                 System.out.println(userDTO);
                                 System.out.println(userDTO.getmId());
+                                onLoginSuccess(userDTO.getmId());
                             }
 
                             @Override public void failure(Throwable error) {
@@ -103,9 +106,12 @@ public class MainActivity extends AppCompatActivity {
                 }, 1500);
     }
 
-    public void onLoginSuccess() {
+    public void onLoginSuccess(String id) {
         _loginButton.setEnabled(true);
         finish();
+        Intent intent = new Intent(this, PropertiesActivity.class);
+        intent.putExtra("userId", id);
+        startActivity(intent);
     }
 
     public void onLoginFailed() {

@@ -23,7 +23,7 @@ public class PropertyDTO {
     @SerializedName("city")
     private String mCity;
     @SerializedName("user")
-    private UserDTO userDTO;
+    private String mIdUser;
     @SerializedName("rooms")
     private List<RoomDTO> roomDTOList;
     private Date mCreated_at;
@@ -32,14 +32,14 @@ public class PropertyDTO {
     public PropertyDTO() {
     }
 
-    public PropertyDTO(String mId, String mName, String mAddressLine1, String mAddressLine2, Integer mZipCode, String mCity, UserDTO userDTO, List<RoomDTO> roomDTOList, Date mCreated_at, Date mUpdated_at) {
+    public PropertyDTO(String mId, String mName, String mAddressLine1, String mAddressLine2, Integer mZipCode, String mCity, String mIdUser, List<RoomDTO> roomDTOList, Date mCreated_at, Date mUpdated_at) {
         this.mId = mId;
         this.mName = mName;
         this.mAddressLine1 = mAddressLine1;
         this.mAddressLine2 = mAddressLine2;
         this.mZipCode = mZipCode;
         this.mCity = mCity;
-        this.userDTO = userDTO;
+        this.mIdUser = mIdUser;
         this.roomDTOList = roomDTOList;
         this.mCreated_at = mCreated_at;
         this.mUpdated_at = mUpdated_at;
@@ -85,14 +85,6 @@ public class PropertyDTO {
         this.mCity = mCity;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
-    }
-
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
-    }
-
     public List<RoomDTO> getRoomDTOList() {
         return roomDTOList;
     }
@@ -124,5 +116,13 @@ public class PropertyDTO {
 
     public void setmName(String mName) {
         this.mName = mName;
+    }
+
+    public String getmIdUser() {
+        return mIdUser;
+    }
+
+    public void setmIdUser(String mIdUser) {
+        this.mIdUser = mIdUser;
     }
 }

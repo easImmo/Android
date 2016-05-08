@@ -27,6 +27,11 @@ public interface IServices {
     @GET("properties/{property_id}")
     Call<PropertyDTO> getProperty(@Path("property_id") String property_id);
 
+    @FormUrlEncoded
+    @POST("properties")
+    Call<PropertyDTO> postProperty(@Field("user_id") String user_id, @Field("name") String name, @Field("addressLine1") String addressLine1,
+                                   @Field("addressLine2") String addressLine2,@Field("zipCode") String zipCode,@Field("city") String city);
+
     @GET("reports/{report_id}")
     Call<ReportDTO> getReport(@Path("report_id") String report_id);
 

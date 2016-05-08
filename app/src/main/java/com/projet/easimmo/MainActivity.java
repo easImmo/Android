@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         });
                         progressDialog.dismiss();
                     }
-                }, 1500);
+                }, 1000);
     }
 
     public void onLoginSuccess(String id) {

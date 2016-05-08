@@ -23,7 +23,16 @@
         <activity
             android:name=".ui.activities.PropertiesActivity"
             android:label="@string/title_activity_properties"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activities.EditPropertyActivity"
+            android:label="@string/title_activity_edit_property"
+            android:parentActivityName=".ui.activities.PropertiesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.projet.easimmo.ui.activities.PropertiesActivity" />
+        </activity>
     </application>
 
 </manifest>

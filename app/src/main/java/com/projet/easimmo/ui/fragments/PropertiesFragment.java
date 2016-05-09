@@ -12,11 +12,10 @@ import android.view.ViewGroup;
 
 import com.projet.easimmo.R;
 import com.projet.easimmo.common.adapter.PropertyAdapter;
+import com.projet.easimmo.common.util.DividerItemDecoration;
 import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.common.util.ItemClickSupport;
-import com.projet.easimmo.common.util.SimpleDividerItemDecoration;
 import com.projet.easimmo.dto.PropertyDTO;
-import com.projet.easimmo.dto.UserDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceProperties;
 
@@ -54,7 +53,7 @@ public class PropertiesFragment extends Fragment {
 
         GlobalVar g = (GlobalVar)getActivity().getApplication();
         idUser = g.getIdUser();
-        System.out.println("********************************************* "+idUser);
+        //System.out.println("********************************************* "+idUser);
         serviceProperties = new ServiceProperties();
         serviceProperties.getPropertiesUser(idUser,new ICallback<List<PropertyDTO>>() {
 
@@ -62,10 +61,12 @@ public class PropertiesFragment extends Fragment {
                 mPropertyDTOList = new ArrayList<PropertyDTO>();
                 mPropertyDTOList.addAll(propertyDTOs);
                 mAdapter = new PropertyAdapter(mPropertyDTOList);
+
+
+                mRecyclerView.addItemDecoration(
+                        new DividerItemDecoration(getActivity()));
+
                 mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(
-                        getContext()
-                ));
             }
 
             @Override public void failure(Throwable error) {

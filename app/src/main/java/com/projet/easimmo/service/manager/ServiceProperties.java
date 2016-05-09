@@ -35,7 +35,7 @@ public class ServiceProperties {
 
             @Override public void onFailure(Call<List<PropertyDTO>> call, Throwable t) {
                 t.printStackTrace();
-                System.out.println("********************************************* FAIL");
+                //System.out.println("********************************************* FAIL");
                 callback.failure(t);
             }
         });

@@ -21,7 +21,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
     public PropertyAdapter(List<PropertyDTO> mPropertyList) {
 
         this.mPropertyList = mPropertyList;
-        System.out.println("Size****************************: "+ mPropertyList.size());
+        //System.out.println("Size****************************: "+ mPropertyList.size());
     }
 
     @Override

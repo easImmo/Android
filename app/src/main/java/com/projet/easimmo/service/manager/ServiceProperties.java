@@ -42,6 +42,7 @@ public class ServiceProperties {
     }
 
     public void postProperty(String user_id, String name, String addressLine1, String addressLine2, String zipCode, String city, final ICallback<PropertyDTO> callback) {
+        System.out.println(name);
         final Call<PropertyDTO> call = mService.postProperty(user_id,name,addressLine1,addressLine2,zipCode,city);
         call.enqueue(new Callback<PropertyDTO>() {
             @Override public void onResponse(Call<PropertyDTO> call,

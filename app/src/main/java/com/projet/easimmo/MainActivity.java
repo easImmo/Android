@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
          email = _emailText.getText().toString();
          password = _passwordText.getText().toString();
 
-        new android.os.Handler().postDelayed(
+        new android.os.Handler().post(
                 new Runnable() {
                     public void run() {
 
@@ -88,23 +88,26 @@ public class MainActivity extends AppCompatActivity {
                         serviceUser.login(email, password, new ICallback<UserDTO>() {
 
                             @Override public void success(UserDTO userDTO) {
+                                progressDialog.dismiss();
                                 System.out.println(userDTO);
                                 System.out.println(userDTO.getmId());
                                 onLoginSuccess(userDTO.getmId());
                             }
 
                             @Override public void failure(Throwable error) {
+                                progressDialog.dismiss();
                                 onLoginFailed();
                             }
 
                             @Override
                             public void unauthorized() {
+                                progressDialog.dismiss();
                                 onLoginFailed();
                             }
                         });
-                        progressDialog.dismiss();
+
                     }
-                }, 1000);
+                });
     }
 
     public void onLoginSuccess(String id) {

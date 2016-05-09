@@ -14,6 +14,7 @@ import com.projet.easimmo.R;
 import com.projet.easimmo.common.adapter.PropertyAdapter;
 import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.common.util.ItemClickSupport;
+import com.projet.easimmo.common.util.SimpleDividerItemDecoration;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.UserDTO;
 import com.projet.easimmo.service.ICallback;
@@ -62,6 +63,9 @@ public class PropertiesFragment extends Fragment {
                 mPropertyDTOList.addAll(propertyDTOs);
                 mAdapter = new PropertyAdapter(mPropertyDTOList);
                 mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(
+                        getContext()
+                ));
             }
 
             @Override public void failure(Throwable error) {

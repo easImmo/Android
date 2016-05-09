@@ -14,24 +14,24 @@ import com.projet.easimmo.ui.fragments.PropertiesFragment;
 
 public class PropertiesActivity extends AppCompatActivity implements PropertiesFragment.PropertyListCallback{
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_properties);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Mes logements");
-
-
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        if (fab != null) {
-            fab.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(fab.getContext(),EditPropertyActivity.class);
-                    startActivity(intent);
-                }
-            });
+                protected void onCreate(Bundle savedInstanceState) {
+                    super.onCreate(savedInstanceState);
+                    setContentView(R.layout.activity_properties);
+                    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                    setSupportActionBar(toolbar);
+                    getSupportActionBar().setTitle("Mes logements");
+
+
+                    final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+                    if (fab != null) {
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(fab.getContext(),EditPropertyActivity.class);
+                                startActivity(intent);
+                            }
+                        });
         }
     }
 

@@ -116,8 +116,6 @@ public class PropertiesFragment extends Fragment {
         return rootView;
     }
 
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -134,6 +132,32 @@ public class PropertiesFragment extends Fragment {
         super.onDetach();
         mCallback = null;
     }
+
+    @Override
+    public void onResume() {
+        serviceProperties.getPropertiesUser(idUser, new ICallback<List<PropertyDTO>>() {
+
+            @Override
+            public void success(List<PropertyDTO> propertyDTOs) {
+                mPropertyDTOList.clear();
+                mPropertyDTOList.addAll(propertyDTOs);
+                mAdapter.notifyDataSetChanged();
+                mRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void failure(Throwable error) {
+            }
+
+            @Override
+            public void unauthorized() {
+
+            }
+
+        });
+        super.onResume();
+    }
+
 
 
     public interface PropertyListCallback{

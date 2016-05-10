@@ -29,6 +29,8 @@ public class PropertyActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         property = (PropertyDTO) getIntent().getSerializableExtra("property");
 
+        setTitle(property.getmName());
+
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(GeneralPropertyFragment.newInstance(property));
         fList.add(RoomListFragment.newInstance(property));

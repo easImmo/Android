@@ -61,11 +61,8 @@ public class PropertiesFragment extends Fragment {
                 mPropertyDTOList = new ArrayList<PropertyDTO>();
                 mPropertyDTOList.addAll(propertyDTOs);
                 mAdapter = new PropertyAdapter(mPropertyDTOList);
-
-
                 mRecyclerView.addItemDecoration(
                         new DividerItemDecoration(getActivity()));
-
                 mRecyclerView.setAdapter(mAdapter);
             }
 

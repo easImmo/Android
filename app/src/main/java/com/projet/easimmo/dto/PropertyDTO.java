@@ -27,13 +27,15 @@ public class PropertyDTO implements Serializable {
     private String mIdUser;
     @SerializedName("rooms")
     private List<RoomDTO> roomDTOList;
+    @SerializedName("reports")
+    private List<ReportDTO> reportDTOList;
     private Date mCreated_at;
     private Date mUpdated_at;
 
     public PropertyDTO() {
     }
 
-    public PropertyDTO(String mId, String mName, String mAddressLine1, String mAddressLine2, Integer mZipCode, String mCity, String mIdUser, List<RoomDTO> roomDTOList, Date mCreated_at, Date mUpdated_at) {
+    public PropertyDTO(String mId, String mName, String mAddressLine1, String mAddressLine2, Integer mZipCode, String mCity, String mIdUser, List<RoomDTO> roomDTOList, Date mCreated_at, Date mUpdated_at, List<ReportDTO> reportDTOList) {
         this.mId = mId;
         this.mName = mName;
         this.mAddressLine1 = mAddressLine1;
@@ -44,6 +46,7 @@ public class PropertyDTO implements Serializable {
         this.roomDTOList = roomDTOList;
         this.mCreated_at = mCreated_at;
         this.mUpdated_at = mUpdated_at;
+        this.reportDTOList = reportDTOList;
     }
 
     public String getmId() {
@@ -125,5 +128,13 @@ public class PropertyDTO implements Serializable {
 
     public void setmIdUser(String mIdUser) {
         this.mIdUser = mIdUser;
+    }
+
+    public List<ReportDTO> getReportDTOList() {
+        return reportDTOList;
+    }
+
+    public void setReportDTOList(List<ReportDTO> reportDTOList) {
+        this.reportDTOList = reportDTOList;
     }
 }

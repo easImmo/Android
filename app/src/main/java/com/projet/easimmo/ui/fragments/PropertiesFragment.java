@@ -120,7 +120,7 @@ public class PropertiesFragment extends Fragment {
             mCallback = (PropertyListCallback) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement PersonListCallback");
+                    + " must implement PropertyListCallback");
         }
     }
 

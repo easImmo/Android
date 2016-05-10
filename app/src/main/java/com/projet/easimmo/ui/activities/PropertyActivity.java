@@ -1,15 +1,19 @@
 package com.projet.easimmo.ui.activities;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.projet.easimmo.R;
+import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.dto.PropertyDTO;
+import com.projet.easimmo.dto.ReportDTO;
 import com.projet.easimmo.ui.fragments.EDLListFragment;
 import com.projet.easimmo.ui.fragments.GeneralPropertyFragment;
 import com.projet.easimmo.ui.fragments.RoomListFragment;
@@ -20,8 +24,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-
-public class PropertyActivity extends AppCompatActivity {
+public class PropertyActivity extends AppCompatActivity implements EDLListFragment.ReportListCallback{
 
     @Bind(R.id.name_content)
     TextView _nameContent;
@@ -34,11 +37,16 @@ public class PropertyActivity extends AppCompatActivity {
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager_property);
         ButterKnife.bind(this);
 
-        PropertyDTO property;
-        Bundle extras = getIntent().getExtras();
-        property = (PropertyDTO) getIntent().getSerializableExtra("property");
+        PropertyDTO property = (PropertyDTO) getIntent().getSerializableExtra("property");
 
-        _nameContent.setText(property.getmName());
+
+        if(property == null) {
+            _nameContent.setText(property.getmName());
+
+            GlobalVar g = (GlobalVar)getApplication();
+            property = g.getPropertyDTO();
+        }
+        setTitle(property.getmName());
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(GeneralPropertyFragment.newInstance(property));
         fList.add(RoomListFragment.newInstance(property));
@@ -51,10 +59,19 @@ public class PropertyActivity extends AppCompatActivity {
         //getSupportActionBar().setTitle(nameProperty);
     }
 
+
+
+
+    @Override
+    public void onItemSelected(ReportDTO reportDTO) {
+        Intent intent = new Intent(this, EDLActivity.class);
+        intent.putExtra("report", reportDTO);
+        startActivity(intent);
+    }
+
     private class MyPagerAdapter extends FragmentPagerAdapter {
 
         private List<Fragment> fragments;
-
 
         public MyPagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
             super(fm);

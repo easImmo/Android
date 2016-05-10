@@ -2,13 +2,14 @@ package com.projet.easimmo.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by victor on 24/04/2016.
  */
-public class ReportDTO {
+public class ReportDTO implements Serializable {
 
     @SerializedName("_id")
     private String mId;

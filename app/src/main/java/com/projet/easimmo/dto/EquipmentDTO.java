@@ -2,10 +2,12 @@ package com.projet.easimmo.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by victor on 24/04/2016.
  */
-public class EquipmentDTO {
+public class EquipmentDTO implements Serializable {
 
     @SerializedName("_" +
             "id")

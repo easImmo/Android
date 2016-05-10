@@ -41,6 +41,7 @@ public class PropertiesActivity extends AppCompatActivity implements PropertiesF
         Intent intent = new Intent(this, PropertyActivity.class);
         intent.putExtra("idProperty", propertyDTO.getmId());
         intent.putExtra("nameProperty", propertyDTO.getmName());
+        intent.putExtra("property", propertyDTO);
         startActivity(intent);
     }
 }

@@ -1,17 +1,16 @@
 package com.projet.easimmo.ui.activities;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import com.projet.easimmo.R;
+import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.ui.fragments.EDLListFragment;
-import com.projet.easimmo.ui.fragments.GeneralProperyFragment;
+import com.projet.easimmo.ui.fragments.GeneralPropertyFragment;
 import com.projet.easimmo.ui.fragments.RoomListFragment;
 
 public class PropertyActivity extends AppCompatActivity {
@@ -23,12 +22,11 @@ public class PropertyActivity extends AppCompatActivity {
 
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager_property);
 
-        String idProperty, nameProperty;
+        PropertyDTO property;
         Bundle extras = getIntent().getExtras();
-        idProperty= extras.getString("idProperty");
-        nameProperty = extras.getString("nameProperty");
+        property = (PropertyDTO) getIntent().getSerializableExtra("property");
 
-        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), idProperty));
+        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), property));
 
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_property);
         //setSupportActionBar(toolbar);
@@ -37,25 +35,25 @@ public class PropertyActivity extends AppCompatActivity {
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private String mIdProperty;
+        private PropertyDTO property;
 
-        public MyPagerAdapter(FragmentManager fm, String idProperty) {
+        public MyPagerAdapter(FragmentManager fm, PropertyDTO property) {
             super(fm);
-            this.mIdProperty = idProperty;
+            this.property = property;
         }
 
         @Override
         public Fragment getItem(int pos) {
             switch(pos) {
                 case 0:
-                    GeneralProperyFragment g = new GeneralProperyFragment();
-                    return g.newInstance(mIdProperty);
+                    GeneralPropertyFragment g = new GeneralPropertyFragment();
+                    return g.newInstance(property);
                 case 1:
                     RoomListFragment r = new RoomListFragment();
-                    return r.newInstance(mIdProperty);
+                    return r.newInstance(property.getmId());
                 case 2:
                     EDLListFragment edl = new EDLListFragment();
-                    return edl.newInstance(mIdProperty);
+                    return edl.newInstance(property.getmId());
             }
             return null;
         }

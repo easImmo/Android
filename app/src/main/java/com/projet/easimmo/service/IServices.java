@@ -14,6 +14,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -30,6 +31,11 @@ public interface IServices {
     @FormUrlEncoded
     @POST("properties")
     Call<PropertyDTO> postProperty(@Field("user_id") String user_id, @Field("name") String name, @Field("addressLine1") String addressLine1,
+                                   @Field("addressLine2") String addressLine2,@Field("zipCode") String zipCode,@Field("city") String city);
+
+    @FormUrlEncoded
+    @PUT("properties")
+    Call<PropertyDTO> putProperty(@Field("property_id") String user_id, @Field("name") String name, @Field("addressLine1") String addressLine1,
                                    @Field("addressLine2") String addressLine2,@Field("zipCode") String zipCode,@Field("city") String city);
 
     @GET("reports/{report_id}")

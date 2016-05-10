@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.projet.easimmo.R;
 import com.projet.easimmo.dto.PropertyDTO;
@@ -16,7 +17,14 @@ import com.projet.easimmo.ui.fragments.RoomListFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+
 public class PropertyActivity extends AppCompatActivity {
+
+    @Bind(R.id.name_content)
+    TextView _nameContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +32,13 @@ public class PropertyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_property);
 
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager_property);
+        ButterKnife.bind(this);
 
         PropertyDTO property;
         Bundle extras = getIntent().getExtras();
         property = (PropertyDTO) getIntent().getSerializableExtra("property");
 
+        _nameContent.setText(property.getmName());
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(GeneralPropertyFragment.newInstance(property));
         fList.add(RoomListFragment.newInstance(property));

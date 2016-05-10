@@ -15,9 +15,9 @@ public class PropertyDTO implements Serializable {
     private String mId;
     @SerializedName("name")
     private String mName;
-    @SerializedName("adressLine1")
+    @SerializedName("addressLine1")
     private String mAddressLine1;
-    @SerializedName("adressLine2")
+    @SerializedName("addressLine2")
     private String mAddressLine2;
     @SerializedName("zipCode")
     private Integer mZipCode;

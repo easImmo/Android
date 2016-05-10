@@ -50,6 +50,25 @@ public class ServiceProperties {
                 if (response.isSuccessful() && response.body() != null) {
                     callback.success(response.body());
                 }
+                else if(response.code() == 401 || response.code() == 404){
+                    callback.unauthorized();
+                }
+            }
+
+            @Override public void onFailure(Call<PropertyDTO> call, Throwable t) {
+                callback.failure(t);
+            }
+        });
+    }
+
+    public void putProperty(String property_id, String name, String addressLine1, String addressLine2, String zipCode, String city, final ICallback<PropertyDTO> callback) {
+        final Call<PropertyDTO> call = mService.putProperty(property_id,name,addressLine1,addressLine2,zipCode,city);
+        call.enqueue(new Callback<PropertyDTO>() {
+            @Override public void onResponse(Call<PropertyDTO> call,
+                                             Response<PropertyDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.success(response.body());
+                }
                 else if(response.code() == 401){
                     callback.unauthorized();
                 }

@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 public class EditPropertyActivity extends AppCompatActivity {
 
     @Bind(R.id.coordinatorLayout)
-    CoordinatorLayout coordinatorLayout;
+    CoordinatorLayout _coordinatorLayout;
     @Bind(R.id.input_name)
     EditText _name;
     @Bind(R.id.input_addressLine1)
@@ -39,21 +39,42 @@ public class EditPropertyActivity extends AppCompatActivity {
 
     String idUser,name, addressLine1, addressLine2, city, zip;
 
-    private ServiceProperties serviceProperties;
+    PropertyDTO property;
 
+    private ServiceProperties serviceProperties;
+    private boolean EDIT_MODE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         GlobalVar g = (GlobalVar)getApplication();
         idUser = g.getIdUser();
-
+        EDIT_MODE = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_property);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Logement");
-
         ButterKnife.bind(this);
+
+        property = (PropertyDTO) getIntent().getSerializableExtra("property");
+
+
+        if(property != null){
+            EDIT_MODE = true;
+        }
+
+        System.out.println("EDIT MODE : " + EDIT_MODE);
+
+        if(EDIT_MODE) {
+            _name.setText(property.getmName());
+            _addressLine1.setText(property.getmAddressLine1());
+            _addressLine2.setText(property.getmAddressLine2());
+            _city.setText(property.getmCity());
+            _zip.setText(property.getmZipCode().toString());
+        }
+
+
+
         _sendBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -63,7 +84,9 @@ public class EditPropertyActivity extends AppCompatActivity {
                 addressLine2 = _addressLine2.getText().toString();
                 city = _city.getText().toString();
                 zip = _zip.getText().toString();
-                postProperty();
+
+                if (EDIT_MODE) putProperty();
+                else postProperty();
             }
         });
         serviceProperties = new ServiceProperties();
@@ -91,7 +114,7 @@ public class EditPropertyActivity extends AppCompatActivity {
                             public void failure(Throwable error) {
                                 error.printStackTrace();
                                 progressDialog.dismiss();
-                                Snackbar.make(coordinatorLayout, "Erreur lors de la création du lot", Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(_coordinatorLayout, "Erreur lors de la création du lot", Snackbar.LENGTH_LONG).show();
                             }
 
                             @Override
@@ -102,5 +125,41 @@ public class EditPropertyActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void putProperty(){
+
+        final ProgressDialog progressDialog = new ProgressDialog(EditPropertyActivity.this,
+                R.style.AppTheme_Dark_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Patientez...");
+        progressDialog.show();
+
+        new android.os.Handler().post(
+                new Runnable() {
+                    public void run() {
+                        serviceProperties.putProperty(property.getmId(), name, addressLine1, addressLine2, zip, city, new ICallback<PropertyDTO>() {
+                            @Override
+                            public void success(PropertyDTO propertyDTO) {
+                                progressDialog.dismiss();
+                                finish();
+                            }
+
+                            @Override
+                            public void failure(Throwable error) {
+                                error.printStackTrace();
+                                progressDialog.dismiss();
+                                Snackbar.make(_coordinatorLayout, "Erreur lors de la création du lot", Snackbar.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void unauthorized() {
+
+                            }
+                        });
+                    }
+                });
+    }
+
+
 
 }

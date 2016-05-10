@@ -1,24 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:text="@string/name"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/name_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:textSize="22sp"
-        android:layout_toEndOf="@+id/name_label"/>
 
     <TextView
         android:id="@+id/address_label"
@@ -27,14 +11,12 @@
         android:text="@string/address"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:layout_below="@+id/name_label"
         android:layout_marginTop="@dimen/activity_vertical_margin" />
 
     <TextView
         android:id="@+id/address_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/address"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/address_label"
         android:layout_alignBottom="@+id/address_label"/>
@@ -43,7 +25,6 @@
         android:id="@+id/address2_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/address"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/address_label"
         android:layout_below="@+id/address_content"/>
@@ -62,7 +43,6 @@
         android:id="@+id/city_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/city"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/city_label"
         android:layout_alignBottom="@+id/city_label"/>
@@ -81,9 +61,26 @@
         android:id="@+id/zip_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/zip"
         android:textSize="20sp"
         android:layout_toEndOf="@+id/zip_label"
         android:layout_alignBottom="@+id/zip_label"/>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/edit_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:elevation="5dp"
+        android:padding="20dp"
+        android:src="@drawable/ic_edit"
+         />
+
+
 
 </RelativeLayout>

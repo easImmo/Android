@@ -18,18 +18,16 @@ public class GeneralPropertyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_general_property, container, false);
-        //Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.anim_toolbar);
-
-
+        property = (PropertyDTO) getArguments().getSerializable("property");
         return v;
     }
 
-    public GeneralPropertyFragment newInstance(PropertyDTO property) {
+    public static GeneralPropertyFragment newInstance(PropertyDTO property) {
         GeneralPropertyFragment f = new GeneralPropertyFragment();
-        this.property = property;
-/*        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) getActivity().findViewById(R.id.collapsing_toolbar);
 
-        collapsingToolbar.setTitle(this.property.getmName());*/
+        Bundle bdl = new Bundle(1);
+        bdl.putSerializable("property", property);
+        f.setArguments(bdl);
         return f;
     }
 

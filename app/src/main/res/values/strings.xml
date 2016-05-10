@@ -6,4 +6,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_properties">PropertiesActivity</string>
     <string name="title_activity_edit_property">editPropertyActivity</string>
+    <string name="name">Nom : </string>
+    <string name="address">Adresse : </string>
+    <string name="address2">Complément : </string>
+    <string name="city">Ville : </string>
+    <string name="zip">Code Postal : </string>
 </resources>

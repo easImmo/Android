@@ -13,6 +13,9 @@ import com.projet.easimmo.ui.fragments.EDLListFragment;
 import com.projet.easimmo.ui.fragments.GeneralPropertyFragment;
 import com.projet.easimmo.ui.fragments.RoomListFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PropertyActivity extends AppCompatActivity {
 
     @Override
@@ -26,7 +29,12 @@ public class PropertyActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         property = (PropertyDTO) getIntent().getSerializableExtra("property");
 
-        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), property));
+        List<Fragment> fList = new ArrayList<Fragment>();
+        fList.add(GeneralPropertyFragment.newInstance(property));
+        fList.add(RoomListFragment.newInstance(property));
+        fList.add(EDLListFragment.newInstance(property));
+
+        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), fList));
 
        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_property);
         //setSupportActionBar(toolbar);
@@ -35,32 +43,22 @@ public class PropertyActivity extends AppCompatActivity {
 
     private class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private PropertyDTO property;
+        private List<Fragment> fragments;
 
-        public MyPagerAdapter(FragmentManager fm, PropertyDTO property) {
+
+        public MyPagerAdapter(FragmentManager fm, List<Fragment> fragmentList) {
             super(fm);
-            this.property = property;
+            this.fragments = fragmentList;
         }
 
         @Override
-        public Fragment getItem(int pos) {
-            switch(pos) {
-                case 0:
-                    GeneralPropertyFragment g = new GeneralPropertyFragment();
-                    return g.newInstance(property);
-                case 1:
-                    RoomListFragment r = new RoomListFragment();
-                    return r.newInstance(property.getmId());
-                case 2:
-                    EDLListFragment edl = new EDLListFragment();
-                    return edl.newInstance(property.getmId());
-            }
-            return null;
+        public Fragment getItem(int position) {
+            return this.fragments.get(position);
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return this.fragments.size();
         }
 
         @Override

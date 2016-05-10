@@ -17,6 +17,7 @@ public class ReportDTO implements Serializable {
     private PropertyDTO mProperty;
     @SerializedName("assessments")
     private List<AssessmentDTO> assessmentDTOList;
+    @SerializedName("createdAt")
     private Date mCreated_at;
     private Date mUpdated_at;
 

@@ -60,4 +60,21 @@ public class ServiceProperties {
             }
         });
     }
+
+    public void getProperty(String idProperty, final ICallback<PropertyDTO> callback) {
+        final Call<PropertyDTO> call = mService.getProperty(idProperty);
+        call.enqueue(new Callback<PropertyDTO>() {
+            @Override public void onResponse(Call<PropertyDTO> call,
+                                             Response<PropertyDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.success(response.body());
+                }
+            }
+            @Override public void onFailure(Call<PropertyDTO> call, Throwable t) {
+                t.printStackTrace();
+                //System.out.println("********************************************* FAIL");
+                callback.failure(t);
+            }
+        });
+    }
 }

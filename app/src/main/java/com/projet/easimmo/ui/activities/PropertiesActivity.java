@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.projet.easimmo.R;
+import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.ui.fragments.PropertiesFragment;
 
@@ -39,9 +40,9 @@ public class PropertiesActivity extends AppCompatActivity implements PropertiesF
     @Override
     public void onItemSelected(PropertyDTO propertyDTO) {
         Intent intent = new Intent(this, PropertyActivity.class);
-        intent.putExtra("idProperty", propertyDTO.getmId());
-        intent.putExtra("nameProperty", propertyDTO.getmName());
         intent.putExtra("property", propertyDTO);
+        GlobalVar g = (GlobalVar)getApplication();
+        g.setPropertyDTO(propertyDTO);
         startActivity(intent);
     }
 }

@@ -34,7 +34,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.projet.easimmo.ui.activities.PropertiesActivity" />
         </activity>
-        <activity android:name=".ui.activities.PropertyActivity"></activity>
+        <activity android:name=".ui.activities.PropertyActivity" />
+        <activity android:name=".ui.activities.EDLActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.projet.easimmo.ui.activities.PropertyActivity" />
+        </activity>
     </application>
 
 </manifest>

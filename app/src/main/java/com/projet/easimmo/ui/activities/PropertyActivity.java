@@ -33,7 +33,6 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property);
-
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager_property);
         ButterKnife.bind(this);
 
@@ -41,12 +40,13 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
 
 
         if(property == null) {
-            _nameContent.setText(property.getmName());
 
             GlobalVar g = (GlobalVar)getApplication();
             property = g.getPropertyDTO();
         }
-        setTitle(property.getmName());
+        _nameContent.setText(property.getmName());
+
+        setTitle("Visualisation de logement");
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(GeneralPropertyFragment.newInstance(property));
         fList.add(RoomListFragment.newInstance(property));

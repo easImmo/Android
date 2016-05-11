@@ -40,6 +40,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.projet.easimmo.ui.activities.PropertyActivity" />
         </activity>
+        <activity
+            android:name=".ui.activities.EditRoomActivity"
+            android:label="@string/title_activity_edit_room"
+            android:parentActivityName=".ui.activities.PropertiesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.projet.easimmo.ui.activities.PropertyActivity" />
+        </activity>
     </application>
 
 </manifest>

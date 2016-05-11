@@ -4,6 +4,7 @@ import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.EquipmentTypeDTO;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.ReportDTO;
+import com.projet.easimmo.dto.RoomDTO;
 import com.projet.easimmo.dto.RoomTypeDTO;
 import com.projet.easimmo.dto.UserDTO;
 
@@ -53,6 +54,11 @@ public interface IServices {
     @FormUrlEncoded
     @POST("users/login")
     Call<UserDTO> login(@Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("rooms")
+    Call<RoomDTO> postRoom(@Field("property_id") String property_id, @Field("roomType") String roomType, @Field("surface") String surface);
+
 
 }
 

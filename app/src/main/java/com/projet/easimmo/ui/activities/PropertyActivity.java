@@ -14,6 +14,7 @@ import com.projet.easimmo.R;
 import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.ReportDTO;
+import com.projet.easimmo.dto.RoomDTO;
 import com.projet.easimmo.ui.fragments.EDLListFragment;
 import com.projet.easimmo.ui.fragments.GeneralPropertyFragment;
 import com.projet.easimmo.ui.fragments.RoomListFragment;
@@ -24,7 +25,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class PropertyActivity extends AppCompatActivity implements EDLListFragment.ReportListCallback{
+public class PropertyActivity extends AppCompatActivity implements EDLListFragment.ReportListCallback, RoomListFragment.RoomListCallback{
 
     @Bind(R.id.name_content)
     TextView _nameContent;
@@ -40,7 +41,6 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
 
 
         if(property == null) {
-
             GlobalVar g = (GlobalVar)getApplication();
             property = g.getPropertyDTO();
         }
@@ -67,6 +67,11 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
         Intent intent = new Intent(this, EDLActivity.class);
         intent.putExtra("report", reportDTO);
         startActivity(intent);
+    }
+
+    @Override
+    public void onItemSelected(RoomDTO roomDTO) {
+        System.out.println("Olel");
     }
 
     private class MyPagerAdapter extends FragmentPagerAdapter {

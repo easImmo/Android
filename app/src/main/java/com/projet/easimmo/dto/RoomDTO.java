@@ -14,12 +14,12 @@ public class RoomDTO implements Serializable {
     @SerializedName("surface")
     private Double mSurface;
     @SerializedName("roomType")
-    private RoomTypeDTO roomTypeDTO;
+    private String roomTypeDTO;
 
     public RoomDTO() {
     }
 
-    public RoomDTO(String mId, Double mSurface, RoomTypeDTO roomTypeDTO) {
+    public RoomDTO(String mId, Double mSurface, String roomTypeDTO) {
 
         this.mId = mId;
         this.mSurface = mSurface;
@@ -34,11 +34,11 @@ public class RoomDTO implements Serializable {
         this.mId = mId;
     }
 
-    public RoomTypeDTO getRoomTypeDTO() {
+    public String getRoomTypeDTO() {
         return roomTypeDTO;
     }
 
-    public void setRoomTypeDTO(RoomTypeDTO roomTypeDTO) {
+    public void setRoomTypeDTO(String roomTypeDTO) {
         this.roomTypeDTO = roomTypeDTO;
     }
 

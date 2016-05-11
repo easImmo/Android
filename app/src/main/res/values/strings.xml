@@ -11,4 +11,5 @@
     <string name="address2">Complément : </string>
     <string name="city">Ville : </string>
     <string name="zip">Code Postal : </string>
+    <string name="edl_date_created">Date de création : </string>
 </resources>

@@ -13,9 +13,9 @@ public class AssessmentDTO implements Serializable {
     @SerializedName("_id")
     private String mId;
     @SerializedName("equipment")
-    private EquipmentDTO equipmentDTO;
+    private String equipmentDTO;
     @SerializedName("equipmentState")
-    private EquipmentStateDTO equipmentStateDTO;
+    private String equipmentStateDTO;
     @SerializedName("comment")
     private String mComment;
     private Date mCreated_at;
@@ -24,7 +24,7 @@ public class AssessmentDTO implements Serializable {
     public AssessmentDTO() {
     }
 
-    public AssessmentDTO(String mId, EquipmentDTO equipmentDTO, EquipmentStateDTO equipmentStateDTO, String mComment, Date mCreated_at, Date mUpdated_at) {
+    public AssessmentDTO(String mId, String equipmentDTO, String equipmentStateDTO, String mComment, Date mCreated_at, Date mUpdated_at) {
         this.mId = mId;
         this.equipmentDTO = equipmentDTO;
         this.equipmentStateDTO = equipmentStateDTO;
@@ -41,19 +41,19 @@ public class AssessmentDTO implements Serializable {
         this.mId = mId;
     }
 
-    public EquipmentDTO getEquipmentDTO() {
+    public String getEquipmentDTO() {
         return equipmentDTO;
     }
 
-    public void setEquipmentDTO(EquipmentDTO equipmentDTO) {
+    public void setEquipmentDTO(String equipmentDTO) {
         this.equipmentDTO = equipmentDTO;
     }
 
-    public EquipmentStateDTO getEquipmentStateDTO() {
+    public String getEquipmentStateDTO() {
         return equipmentStateDTO;
     }
 
-    public void setEquipmentStateDTO(EquipmentStateDTO equipmentStateDTO) {
+    public void setEquipmentStateDTO(String equipmentStateDTO) {
         this.equipmentStateDTO = equipmentStateDTO;
     }
 

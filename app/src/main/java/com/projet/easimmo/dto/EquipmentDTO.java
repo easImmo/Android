@@ -15,12 +15,12 @@ public class EquipmentDTO implements Serializable {
     @SerializedName("room")
     private RoomDTO roomDTO;
     @SerializedName("equipmentType")
-    private EquipmentTypeDTO equipmentTypeDTO;
+    private String equipmentTypeDTO;
 
     public EquipmentDTO() {
     }
 
-    public EquipmentDTO(String mId, RoomDTO roomDTO, EquipmentTypeDTO equipmentTypeDTO) {
+    public EquipmentDTO(String mId, RoomDTO roomDTO, String equipmentTypeDTO) {
         this.mId = mId;
         this.roomDTO = roomDTO;
         this.equipmentTypeDTO = equipmentTypeDTO;
@@ -42,11 +42,11 @@ public class EquipmentDTO implements Serializable {
         this.roomDTO = roomDTO;
     }
 
-    public EquipmentTypeDTO getEquipmentTypeDTO() {
+    public String getEquipmentTypeDTO() {
         return equipmentTypeDTO;
     }
 
-    public void setEquipmentTypeDTO(EquipmentTypeDTO equipmentTypeDTO) {
+    public void setEquipmentTypeDTO(String equipmentTypeDTO) {
         this.equipmentTypeDTO = equipmentTypeDTO;
     }
 }

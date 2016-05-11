@@ -14,4 +14,6 @@
     <string name="zip">Code Postal : </string>
     <string name="surface">Surface : </string>
     <string name="choose_roomType">Type de Pièce</string>
+    <string name="edl_date_created">Date de création : </string>
+    <string name="edl_nb_problems">Nombre de problème(s) : </string>
 </resources>

@@ -2,6 +2,7 @@ package com.projet.easimmo;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.link_signup)
     TextView _signupLink;
 
+    private static String SHARED_ID = "USER_ID";
+
     String email,password;
 
     private ServiceUser serviceUser;
@@ -59,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         serviceUser = new ServiceUser();
+        SharedPreferences sh = getSharedPreferences(SHARED_ID, MODE_PRIVATE);
+        String idUser = sh.getString("id_user",null);
+        if(idUser != null){
+            onLoginSuccess(idUser);
+            return;
+        }
 
     }
 
@@ -117,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
         //intent.putExtra("userId", id);
         GlobalVar g = (GlobalVar)getApplication();
         g.setIdUser(id);
+        SharedPreferences.Editor editor = getSharedPreferences(SHARED_ID, MODE_PRIVATE).edit();
+        editor.putString("id_user", id);
+        editor.commit();
         startActivity(intent);
     }
 

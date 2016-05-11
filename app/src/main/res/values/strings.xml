@@ -12,4 +12,5 @@
     <string name="city">Ville : </string>
     <string name="zip">Code Postal : </string>
     <string name="edl_date_created">Date de création : </string>
+    <string name="edl_nb_problems">Nombre de problème(s) : </string>
 </resources>

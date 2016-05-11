@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import com.projet.easimmo.R;
 import com.projet.easimmo.dto.ReportDTO;
+import com.projet.easimmo.ui.fragments.EDLEquipmentFragment;
 import com.projet.easimmo.ui.fragments.GeneralEDLFragment;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class EDLActivity extends AppCompatActivity  {
 
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(GeneralEDLFragment.newInstance(reportDTO));
+        fList.add(EDLEquipmentFragment.newInstance(reportDTO));
         pager.setAdapter(new EDLPagerAdapter(getSupportFragmentManager(), fList));
     }
 

@@ -136,6 +136,9 @@ public class PropertiesFragment extends Fragment {
 
             @Override
             public void success(List<PropertyDTO> propertyDTOs) {
+                if(mPropertyDTOList == null){
+                    mPropertyDTOList = new ArrayList<PropertyDTO>();
+                }
                 mPropertyDTOList.clear();
                 mPropertyDTOList.addAll(propertyDTOs);
                 mAdapter.notifyDataSetChanged();

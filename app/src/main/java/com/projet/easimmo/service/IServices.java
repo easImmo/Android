@@ -1,5 +1,6 @@
 package com.projet.easimmo.service;
 
+import com.projet.easimmo.dto.EquipmentDTO;
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.EquipmentTypeDTO;
 import com.projet.easimmo.dto.PropertyDTO;
@@ -53,6 +54,11 @@ public interface IServices {
     @FormUrlEncoded
     @POST("users/login")
     Call<UserDTO> login(@Field("email") String email, @Field("password") String password);
+
+    @GET("equipments/{equipment_id}")
+    Call<EquipmentDTO> getEquipment(@Path("equipment_id") String equipment_id);
+
+
 
 }
 

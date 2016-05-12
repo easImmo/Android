@@ -18,4 +18,5 @@
     <string name="edl_nb_problems">Nombre de problème(s) : </string>
     <string name="edl_equipment">Nom : </string>
     <string name="edl_equipment_state">Etat : </string>
+    <string name="photos">Photo(s) : </string>
 </resources>

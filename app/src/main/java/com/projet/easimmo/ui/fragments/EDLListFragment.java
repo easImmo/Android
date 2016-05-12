@@ -64,7 +64,7 @@ public class EDLListFragment extends Fragment {
                 .OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                mCallback.onItemSelected(mReportDTOList.get(position));
+                mCallback.onItemSelected(mReportDTOList.get(position), property);
             }
         });
 
@@ -152,6 +152,6 @@ public class EDLListFragment extends Fragment {
     }
 
     public interface ReportListCallback{
-        void onItemSelected(ReportDTO reportDTO);
+        void onItemSelected(ReportDTO reportDTO, PropertyDTO propertyDTO);
     }
 }

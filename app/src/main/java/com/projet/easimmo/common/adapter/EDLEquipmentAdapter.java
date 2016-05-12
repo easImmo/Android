@@ -11,6 +11,8 @@ import com.projet.easimmo.dto.AssessmentDTO;
 import com.projet.easimmo.dto.EquipmentDTO;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.ReportDTO;
+import com.projet.easimmo.dto.RoomDTO;
+import com.projet.easimmo.dto.display.EdlDetailDisplayDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceEquipment;
 
@@ -22,14 +24,11 @@ import java.util.List;
  */
 public class EDLEquipmentAdapter extends RecyclerView.Adapter<EDLEquipmentAdapter.ViewHolder>{
 
-    private List<AssessmentDTO> mAssessmentDTOs;
-    private ServiceEquipment serviceEquipment;
-    private EquipmentDTO equipmentDTO;
+    private List<EdlDetailDisplayDTO> mEdlDetailDisplayDTOs;
+    private EdlDetailDisplayDTO edlDetailDisplayDTO;
 
-    public EDLEquipmentAdapter(List<AssessmentDTO> mAssessmentDTOs) {
-
-        this.mAssessmentDTOs = mAssessmentDTOs;
-        //System.out.println("Size****************************: "+ mPropertyList.size());
+    public EDLEquipmentAdapter(List<EdlDetailDisplayDTO> mEdlDetailDisplayDTOs) {
+        this.mEdlDetailDisplayDTOs = mEdlDetailDisplayDTOs;
     }
 
     @Override
@@ -41,43 +40,18 @@ public class EDLEquipmentAdapter extends RecyclerView.Adapter<EDLEquipmentAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        serviceEquipment = new ServiceEquipment();
-        AssessmentDTO assessmentDTO = mAssessmentDTOs.get(position);
-
-        serviceEquipment.getEquipment(assessmentDTO.getEquipmentDTO(), new ICallback<EquipmentDTO>() {
-
-            @Override
-            public void success(EquipmentDTO equipment) {
-               equipmentDTO = equipment;
-                setObjects(holder);
-            }
-
-            @Override
-            public void failure(Throwable error) {
-            }
-
-            @Override
-            public void unauthorized() {
-
-            }
-
-        });
-
-
+        edlDetailDisplayDTO = mEdlDetailDisplayDTOs.get(position);
+        holder.mNameEquipmentTxv.setText(edlDetailDisplayDTO.getEquipmentDTO().getEquipmentTypeDTO());
+        holder.mNameRommTxv.setText(edlDetailDisplayDTO.getRoomDTO().getRoomTypeDTO());
     }
 
     @Override
     public int getItemCount() {
-        if(mAssessmentDTOs != null) {
-            return mAssessmentDTOs.size();
+        if(mEdlDetailDisplayDTOs != null) {
+            return mEdlDetailDisplayDTOs.size();
         }else{
             return 0;
         }
-    }
-
-    public void setObjects(ViewHolder holder){
-        holder.mNameEquipmentTxv.setText(equipmentDTO.getEquipmentTypeDTO());
-        holder.mNameRommTxv.setText(equipmentDTO.getRoomDTO().getRoomTypeDTO());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

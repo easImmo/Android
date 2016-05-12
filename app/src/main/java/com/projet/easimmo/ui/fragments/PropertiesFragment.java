@@ -137,13 +137,18 @@ public class PropertiesFragment extends Fragment {
             @Override
             public void success(List<PropertyDTO> propertyDTOs) {
 
+                Boolean isNew = false;
                 if(mPropertyDTOList == null){
+                    isNew = true;
                     mPropertyDTOList = new ArrayList<PropertyDTO>();
                 }
                 mPropertyDTOList.clear();
                 mPropertyDTOList.addAll(propertyDTOs);
-                mAdapter.notifyDataSetChanged();
-                mRefreshLayout.setRefreshing(false);
+                if(isNew == false) {
+                    mAdapter.notifyDataSetChanged();
+                }
+                    mRefreshLayout.setRefreshing(false);
+
             }
 
             @Override

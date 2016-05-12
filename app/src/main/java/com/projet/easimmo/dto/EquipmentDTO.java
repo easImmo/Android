@@ -9,20 +9,16 @@ import java.io.Serializable;
  */
 public class EquipmentDTO implements Serializable {
 
-    @SerializedName("_" +
-            "id")
+    @SerializedName("_id")
     private String mId;
-    @SerializedName("room")
-    private RoomDTO roomDTO;
     @SerializedName("equipmentType")
     private String equipmentTypeDTO;
 
     public EquipmentDTO() {
     }
 
-    public EquipmentDTO(String mId, RoomDTO roomDTO, String equipmentTypeDTO) {
+    public EquipmentDTO(String mId, String equipmentTypeDTO) {
         this.mId = mId;
-        this.roomDTO = roomDTO;
         this.equipmentTypeDTO = equipmentTypeDTO;
     }
 
@@ -32,14 +28,6 @@ public class EquipmentDTO implements Serializable {
 
     public void setmId(String mId) {
         this.mId = mId;
-    }
-
-    public RoomDTO getRoomDTO() {
-        return roomDTO;
-    }
-
-    public void setRoomDTO(RoomDTO roomDTO) {
-        this.roomDTO = roomDTO;
     }
 
     public String getEquipmentTypeDTO() {

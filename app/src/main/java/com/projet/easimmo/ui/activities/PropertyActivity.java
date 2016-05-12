@@ -63,9 +63,10 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
 
 
     @Override
-    public void onItemSelected(ReportDTO reportDTO) {
+    public void onItemSelected(ReportDTO reportDTO, PropertyDTO propertyDTO) {
         Intent intent = new Intent(this, EDLActivity.class);
         intent.putExtra("report", reportDTO);
+        intent.putExtra("property", propertyDTO);
         startActivity(intent);
     }
 

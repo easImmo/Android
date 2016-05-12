@@ -16,4 +16,6 @@
     <string name="choose_roomType">Type de Pièce</string>
     <string name="edl_date_created">Date de création : </string>
     <string name="edl_nb_problems">Nombre de problème(s) : </string>
+    <string name="edl_equipment">Nom : </string>
+    <string name="edl_equipment_state">Etat : </string>
 </resources>

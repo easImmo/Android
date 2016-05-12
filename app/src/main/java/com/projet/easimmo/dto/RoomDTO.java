@@ -3,6 +3,7 @@ package com.projet.easimmo.dto;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by victor on 24/04/2016.
@@ -15,15 +16,18 @@ public class RoomDTO implements Serializable {
     private Double mSurface;
     @SerializedName("roomType")
     private String mType;
+    @SerializedName("equipments")
+    private List<EquipmentDTO> equipmentDTOList;
 
     public RoomDTO() {
     }
 
-    public RoomDTO(String mId, Double mSurface, String roomTypeDTO) {
+    public RoomDTO(String mId, Double mSurface, String roomTypeDTO, List<EquipmentDTO> equipmentDTOList) {
 
         this.mId = mId;
         this.mSurface = mSurface;
         this.mType = roomTypeDTO;
+        this.equipmentDTOList = equipmentDTOList;
     }
 
     public String getmId() {
@@ -48,5 +52,13 @@ public class RoomDTO implements Serializable {
 
     public void setmSurface(Double mSurface) {
         this.mSurface = mSurface;
+    }
+
+    public List<EquipmentDTO> getEquipmentDTOList() {
+        return equipmentDTOList;
+    }
+
+    public void setEquipmentDTOList(List<EquipmentDTO> equipmentDTOList) {
+        this.equipmentDTOList = equipmentDTOList;
     }
 }

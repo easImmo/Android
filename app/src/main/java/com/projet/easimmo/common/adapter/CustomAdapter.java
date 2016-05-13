@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.projet.easimmo.R;
 
@@ -18,7 +17,7 @@ import com.projet.easimmo.R;
 public class CustomAdapter extends PagerAdapter {
 
     Context context;
-    int[] imageId = {R.drawable.image1, R.drawable.image2, R.drawable.image3};
+    int[] imageId = {R.drawable.image1, R.drawable.image2v, R.drawable.image3v};
 
     public CustomAdapter(Context context){
         this.context = context;

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +24,8 @@ import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceProperties;
 import com.projet.easimmo.ui.activities.EditPropertyActivity;
 import com.projet.easimmo.ui.activities.EditRoomActivity;
+import com.projet.easimmo.ui.dialogFragments.CreateEdlDialogFragment;
+import com.projet.easimmo.ui.dialogFragments.CreateRoomDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,9 +107,12 @@ public class RoomListFragment extends Fragment {
             addRoomFab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(addRoomFab.getContext(),EditRoomActivity.class);
+                   /* Intent intent = new Intent(addRoomFab.getContext(),EditRoomActivity.class);
                     intent.putExtra("property", property);
-                    startActivity(intent);
+                    startActivity(intent);*/
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    DialogFragment dialog = new CreateRoomDialogFragment();
+                    dialog.show(fm, "dialog");
                 }
             });
         }

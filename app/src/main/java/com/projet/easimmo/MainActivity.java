@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         serviceUser = new ServiceUser();
         SharedPreferences sh = getSharedPreferences(SHARED_ID, MODE_PRIVATE);
         String idUser = sh.getString("id_user",null);
+
         if(idUser != null){
             onLoginSuccess(idUser);
             return;

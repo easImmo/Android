@@ -25,7 +25,7 @@
         <activity
             android:name=".ui.activities.PropertiesActivity"
             android:label="@string/title_activity_properties"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity
             android:name=".ui.activities.EditPropertyActivity"
             android:label="@string/title_activity_edit_property"

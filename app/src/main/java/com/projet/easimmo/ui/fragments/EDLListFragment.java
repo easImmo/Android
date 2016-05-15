@@ -108,6 +108,8 @@ public class EDLListFragment extends Fragment {
                 public void onClick(View view) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     DialogFragment dialog = new CreateEdlDialogFragment();
+                    dialog.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
+
                     dialog.show(fm, "dialog");
                 }
             });

@@ -20,4 +20,7 @@
     <string name="edl_equipment_state">Etat : </string>
     <string name="photos">Photo(s) : </string>
     <string name="edl_create_title">Créer un EDL</string>
+    <string name="edl_entrant">Entrant</string>
+    <string name="edl_sortant">Sortant</string>
+    <string name="assessment_create_title">Créer un sinistre</string>
 </resources>

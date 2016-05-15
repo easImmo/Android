@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.projet.easimmo.ui.dialogFragments.CreateEdlDialogFragment"
     android:paddingLeft="60dp"
     android:paddingRight="60dp">
 
@@ -13,11 +12,11 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/title_edl_create"
+            android:id="@+id/title_assessment_create"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/edl_create_title"
+            android:text="@string/assessment_create_title"
             android:textStyle="bold"
             android:textSize="24sp"
             android:layout_marginBottom="24dp"
@@ -25,34 +24,31 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-            <TextView
-                android:id="@+id/label_edl_entrant"
-                android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Spinner
+                android:id="@+id/room_type_spinner"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/edl_entrant"
-                android:textSize="20sp"
-                android:layout_marginBottom="24dp"/>
-            <Switch
-                android:id="@+id/flashlightButton"
-                android:layout_marginBottom="24dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content" />
-            <TextView
-                android:id="@+id/label_edl_sortant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/edl_sortant"
-                android:textSize="20sp"
+                android:prompt="@string/choose_roomType"
                 android:layout_marginBottom="24dp"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Spinner
+                android:id="@+id/equipment_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/choose_roomType"
+                android:layout_marginBottom="24dp"/>
+        </LinearLayout>
+
+
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_send_edl"
+            android:id="@+id/btn_send_assessment"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"

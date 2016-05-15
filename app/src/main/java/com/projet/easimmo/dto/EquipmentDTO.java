@@ -37,4 +37,8 @@ public class EquipmentDTO implements Serializable {
     public void setEquipmentTypeDTO(String equipmentTypeDTO) {
         this.equipmentTypeDTO = equipmentTypeDTO;
     }
+
+    public String toString(){
+        return this.equipmentTypeDTO;
+    }
 }

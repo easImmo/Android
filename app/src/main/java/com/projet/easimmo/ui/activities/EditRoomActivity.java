@@ -19,7 +19,6 @@ import com.projet.easimmo.dto.RoomDTO;
 import com.projet.easimmo.dto.RoomTypeDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceManager;
-import com.projet.easimmo.service.manager.ServiceProperties;
 import com.projet.easimmo.service.manager.ServiceRooms;
 
 import java.util.ArrayList;

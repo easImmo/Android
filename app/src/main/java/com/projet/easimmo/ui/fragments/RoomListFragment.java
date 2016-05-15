@@ -37,20 +37,23 @@ import butterknife.ButterKnife;
 public class RoomListFragment extends Fragment {
     private PropertyDTO property;
     private List<RoomDTO> mRoomDTOList;
-    private RecyclerView mRecyclerView;
+    @Bind(R.id.room_list)
+    RecyclerView mRecyclerView;
     private RoomAdapter mAdapter;
     private ServiceProperties serviceProperties;
 
     @Bind(R.id.retrofit_swype_refresh_layout)
     SwipeRefreshLayout mRefreshLayout;
 
+    @Bind(R.id.addRoomFab)
+    FloatingActionButton addRoomFab;
     private RoomListCallback mCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_room_list, container, false);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.room_list);
 
+        ButterKnife.bind(this,rootView);
         mRecyclerView.setHasFixedSize(false);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -63,8 +66,6 @@ public class RoomListFragment extends Fragment {
         mRecyclerView.addItemDecoration(
                 new DividerItemDecoration(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
-
-        ButterKnife.bind(this,rootView);
 
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport
                 .OnItemClickListener() {
@@ -101,8 +102,6 @@ public class RoomListFragment extends Fragment {
             }
         });
 
-        final FloatingActionButton addRoomFab = (FloatingActionButton) rootView.findViewById(R.id.addRoomFab);
-        //System.out.println(addRoomFab.getId());
         if (addRoomFab != null) {
             addRoomFab.setOnClickListener(new View.OnClickListener() {
                 @Override

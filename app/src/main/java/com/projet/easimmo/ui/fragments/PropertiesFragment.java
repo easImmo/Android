@@ -29,7 +29,8 @@ import butterknife.ButterKnife;
 public class PropertiesFragment extends Fragment {
 
     private List<PropertyDTO> mPropertyDTOList;
-    private RecyclerView mRecyclerView;
+    @Bind(R.id.property_list)
+    RecyclerView mRecyclerView;
     private PropertyAdapter mAdapter;
     private ServiceProperties serviceProperties;
 
@@ -44,15 +45,17 @@ public class PropertiesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_properties, container, false);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.property_list);
-
+        GlobalVar g = (GlobalVar)getActivity().getApplication();
+        idUser = g.getIdUser();
+        ButterKnife.bind(this,rootView);
         mRecyclerView.setHasFixedSize(false);
+
+        System.out.println("PropertiesFragment***************** "+g.getIdUser());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
-        GlobalVar g = (GlobalVar)getActivity().getApplication();
-        idUser = g.getIdUser();
+
         //System.out.println("********************************************* "+idUser);
         serviceProperties = new ServiceProperties();
         serviceProperties.getPropertiesUser(idUser,new ICallback<List<PropertyDTO>>() {
@@ -86,7 +89,7 @@ public class PropertiesFragment extends Fragment {
             }
         });
 
-        ButterKnife.bind(this,rootView);
+
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override public void onRefresh() {
                 serviceProperties.getPropertiesUser(idUser,new ICallback<List<PropertyDTO>>() {

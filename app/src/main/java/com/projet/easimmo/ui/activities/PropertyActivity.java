@@ -30,15 +30,16 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
     @Bind(R.id.name_content)
     TextView _nameContent;
 
+    @Bind(R.id.viewPager_property)
+    ViewPager pager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property);
-        ViewPager pager = (ViewPager) findViewById(R.id.viewPager_property);
         ButterKnife.bind(this);
 
         PropertyDTO property = (PropertyDTO) getIntent().getSerializableExtra("property");
-
 
         if(property == null) {
             GlobalVar g = (GlobalVar)getApplication();

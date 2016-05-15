@@ -14,18 +14,25 @@ import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.ui.fragments.PropertiesFragment;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class PropertiesActivity extends AppCompatActivity implements PropertiesFragment.PropertyListCallback{
+
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
+
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_properties);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Mes logements");
 
-
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -44,5 +51,7 @@ public class PropertiesActivity extends AppCompatActivity implements PropertiesF
         GlobalVar g = (GlobalVar)getApplication();
         g.setPropertyDTO(propertyDTO);
         startActivity(intent);
+
+        System.out.println(g.getIdUser());
     }
 }

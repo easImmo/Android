@@ -36,22 +36,25 @@ import butterknife.ButterKnife;
 public class EDLListFragment extends Fragment {
     private PropertyDTO property;
     private List<ReportDTO> mReportDTOList;
-    private RecyclerView mRecyclerView;
+
+    @Bind(R.id.report_list)
+    RecyclerView mRecyclerView;
     private ReportAdapter mAdapter;
     private ServiceProperties serviceProperties;
 
     @Bind(R.id.retrofit_swype_refresh_layout)
     SwipeRefreshLayout mRefreshLayout;
 
+    @Bind(R.id.addEdlFab)
+    FloatingActionButton addRoomFab;
+
     private ReportListCallback mCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_edllist, container, false);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.report_list);
-
+        ButterKnife.bind(this,rootView);
         mRecyclerView.setHasFixedSize(false);
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mReportDTOList = new ArrayList<>();
@@ -63,7 +66,7 @@ public class EDLListFragment extends Fragment {
                 new DividerItemDecoration(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
 
-        ButterKnife.bind(this,rootView);
+
 
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport
                 .OnItemClickListener() {
@@ -100,7 +103,6 @@ public class EDLListFragment extends Fragment {
             }
         });
 
-        final FloatingActionButton addRoomFab = (FloatingActionButton) rootView.findViewById(R.id.addEdlFab);
         //System.out.println(addRoomFab.getId());
         if (addRoomFab != null) {
             addRoomFab.setOnClickListener(new View.OnClickListener() {

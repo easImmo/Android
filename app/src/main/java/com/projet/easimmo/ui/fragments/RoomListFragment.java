@@ -98,7 +98,7 @@ public class RoomListFragment extends Fragment {
         });
 
         final FloatingActionButton addRoomFab = (FloatingActionButton) rootView.findViewById(R.id.addRoomFab);
-        System.out.println(addRoomFab.getId());
+        //System.out.println(addRoomFab.getId());
         if (addRoomFab != null) {
             addRoomFab.setOnClickListener(new View.OnClickListener() {
                 @Override

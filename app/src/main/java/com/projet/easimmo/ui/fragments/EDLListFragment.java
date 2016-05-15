@@ -1,9 +1,13 @@
 package com.projet.easimmo.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +24,7 @@ import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.ReportDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceProperties;
+import com.projet.easimmo.ui.dialogFragments.CreateEdlDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,6 +99,19 @@ public class EDLListFragment extends Fragment {
                 });
             }
         });
+
+        final FloatingActionButton addRoomFab = (FloatingActionButton) rootView.findViewById(R.id.addEdlFab);
+        //System.out.println(addRoomFab.getId());
+        if (addRoomFab != null) {
+            addRoomFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    DialogFragment dialog = new CreateEdlDialogFragment();
+                    dialog.show(fm, "dialog");
+                }
+            });
+        }
 
         return rootView;
     }

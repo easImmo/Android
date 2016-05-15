@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.projet.easimmo.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by victor on 12/05/2016.
@@ -31,10 +32,14 @@ public class CustomAdapter extends PagerAdapter {
 
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
 
-        View viewItem = inflater.inflate(R.layout.image_item, container, false);
-        ImageView imageView = (ImageView) viewItem.findViewById(R.id.imageView);
-        imageView.setImageResource(imageId[position]);
+        String imageUri = "http://easimmoapi.nicolasdu.com/images/5738c2be5a321fce4ddee68f";
 
+        View viewItem = inflater.inflate(R.layout.image_item, container, false);
+        //ImageView imageView = (ImageView) viewItem.findViewById(R.id.imageView);
+        //imageView.setImageResource(imageId[position]);
+
+        ImageView ivBasicImage = (ImageView) viewItem.findViewById(R.id.imageView);
+        Picasso.with(context).load(imageUri).into(ivBasicImage);
         ((ViewPager)container).addView(viewItem);
 
         return viewItem;

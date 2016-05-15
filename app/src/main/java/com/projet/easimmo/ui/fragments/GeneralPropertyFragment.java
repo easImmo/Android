@@ -34,6 +34,9 @@ public class GeneralPropertyFragment extends Fragment {
     @Bind(R.id.zip_content)
     TextView _zipContent;
 
+    @Bind(R.id.edit_fab)
+    FloatingActionButton fab;
+
     private PropertyDTO property;
 
     @Override
@@ -49,8 +52,6 @@ public class GeneralPropertyFragment extends Fragment {
         _cityContent.setText(property.getmCity());
         _zipContent.setText(String.format(Locale.FRANCE,"%d",property.getmZipCode()));
 
-
-        final FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.edit_fab);
         if (fab != null) {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override

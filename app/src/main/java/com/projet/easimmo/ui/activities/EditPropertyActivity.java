@@ -36,6 +36,8 @@ public class EditPropertyActivity extends AppCompatActivity {
     EditText _zip;
     @Bind(R.id.btn_send)
     Button _sendBtn;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     String idUser,name, addressLine1, addressLine2, city, zip;
 
@@ -51,10 +53,10 @@ public class EditPropertyActivity extends AppCompatActivity {
         EDIT_MODE = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_property);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Logement");
-        ButterKnife.bind(this);
+
 
         property = (PropertyDTO) getIntent().getSerializableExtra("property");
 

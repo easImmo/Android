@@ -24,6 +24,11 @@ public class EDLDetailActivity extends AppCompatActivity {
     @Bind(R.id.equipment_state)
     TextView _equipment_state;
 
+    @Bind(R.id.viewPager_image)
+    ViewPager viewPager;
+
+    @Bind(R.id.indicator)
+    CirclePageIndicator mIndicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +38,6 @@ public class EDLDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         _equipment.setText(" "+detail.getEquipmentDTO().getEquipmentTypeDTO());
         _equipment_state.setText(" "+detail.getAssessmentDTO().getEquipmentStateDTO());
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_image);
-        CirclePageIndicator mIndicator = (CirclePageIndicator)findViewById(R.id.indicator);
 
         PagerAdapter adapter = new CustomAdapter(EDLDetailActivity.this);
 

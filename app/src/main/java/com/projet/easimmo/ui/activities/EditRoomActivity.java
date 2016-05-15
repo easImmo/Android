@@ -39,6 +39,8 @@ public class EditRoomActivity extends AppCompatActivity {
     EditText _surface;
     @Bind(R.id.btn_send)
     Button _sendBtn;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
     String roomType, surface, idUser;
 
@@ -58,10 +60,10 @@ public class EditRoomActivity extends AppCompatActivity {
         roomTypeStringsList = new ArrayList<>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_room);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Pièce");
-        ButterKnife.bind(this);
+
         serviceRooms = new ServiceRooms();
 
         property = (PropertyDTO) getIntent().getSerializableExtra("property");

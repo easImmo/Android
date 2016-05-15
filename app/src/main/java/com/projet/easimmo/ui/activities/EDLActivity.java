@@ -21,7 +21,13 @@ import com.projet.easimmo.ui.fragments.GeneralEDLFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class EDLActivity extends AppCompatActivity implements EDLEquipmentFragment.EDLEquipmentCallback{
+
+    @Bind(R.id.viewPager_edl)
+    ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +36,7 @@ public class EDLActivity extends AppCompatActivity implements EDLEquipmentFragme
         ReportDTO reportDTO = (ReportDTO) getIntent().getSerializableExtra("report");
         PropertyDTO propertyDTO = (PropertyDTO) getIntent().getSerializableExtra("property");
         setTitle("Report_"+reportDTO.getmId().substring(0,9));
-
-        ViewPager pager = (ViewPager) findViewById(R.id.viewPager_edl);
-
+        ButterKnife.bind(this);
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(GeneralEDLFragment.newInstance(reportDTO));
         fList.add(EDLEquipmentFragment.newInstance(reportDTO,propertyDTO));

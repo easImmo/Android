@@ -29,12 +29,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 public class EDLEquipmentFragment extends Fragment {
 
     private List<EdlDetailDisplayDTO> mEdlDetailDisplayDTOs;
-    private RecyclerView mRecyclerView;
+
+    @Bind(R.id.equipment_list)
+    RecyclerView mRecyclerView;
+
     private EDLEquipmentAdapter mAdapter;
     private PropertyDTO propertyDTO;
 
@@ -47,8 +51,8 @@ public class EDLEquipmentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_edlequipment, container, false);
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.equipment_list);
 
+        ButterKnife.bind(this,rootView);
         mRecyclerView.setHasFixedSize(false);
         ReportDTO reportDTO = (ReportDTO) getArguments().getSerializable("report");
         propertyDTO = (PropertyDTO) getArguments().getSerializable("property");

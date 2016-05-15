@@ -31,12 +31,5 @@
             tools:text="Lille"
            />
     </LinearLayout>
-    <ImageView
-        android:id="@+id/Image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:padding="5dp"
-        android:src="@drawable/ic_arrow_forward_black_24dp"
-        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

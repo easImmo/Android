@@ -4,6 +4,7 @@ import com.projet.easimmo.dto.AssessmentDTO;
 import com.projet.easimmo.dto.EquipmentDTO;
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.EquipmentTypeDTO;
+import com.projet.easimmo.dto.ImageDTO;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.ReportDTO;
 import com.projet.easimmo.dto.RoomDTO;
@@ -12,13 +13,17 @@ import com.projet.easimmo.dto.UserDTO;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 /**
@@ -79,6 +84,10 @@ public interface IServices {
     @FormUrlEncoded
     @POST("assessments")
     Call<AssessmentDTO> postAssessment(@Field("report_id") String report_id, @Field("equipment_id") String equipment_id, @Field("equipmentState") String equipmentState, @Field("comment") String comment);
+
+    @Multipart
+    @POST("images")
+    Call<ImageDTO> upload(@Part MultipartBody.Part file, @Part("assessment_id") RequestBody assessment_id);
 
 }
 

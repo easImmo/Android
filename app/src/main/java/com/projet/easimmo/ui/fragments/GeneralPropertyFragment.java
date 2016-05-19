@@ -13,6 +13,8 @@ import android.widget.Toolbar;
 
 import com.projet.easimmo.R;
 import com.projet.easimmo.dto.PropertyDTO;
+import com.projet.easimmo.service.ICallback;
+import com.projet.easimmo.service.manager.ServiceProperties;
 import com.projet.easimmo.ui.activities.EditPropertyActivity;
 
 import java.util.Locale;
@@ -38,12 +40,13 @@ public class GeneralPropertyFragment extends Fragment {
     FloatingActionButton fab;
 
     private PropertyDTO property;
+    private ServiceProperties serviceProperties;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_general_property, container, false);
         ButterKnife.bind(this, v);
-
+        serviceProperties = new ServiceProperties();
         property = (PropertyDTO) getArguments().getSerializable("property");
 
         assert property != null;
@@ -68,7 +71,28 @@ public class GeneralPropertyFragment extends Fragment {
 
     @Override
     public void onResume() {
+        serviceProperties.getProperty(property.getmId(), new ICallback<PropertyDTO>() {
 
+            @Override
+            public void success(PropertyDTO propertyDTOs) {
+                property = propertyDTOs;
+                assert property != null;
+                _addressContent.setText(property.getmAddressLine1());
+                _address2Content.setText(property.getmAddressLine2());
+                _cityContent.setText(property.getmCity());
+                _zipContent.setText(String.format(Locale.FRANCE,"%d",property.getmZipCode()));
+            }
+
+            @Override
+            public void failure(Throwable error) {
+            }
+
+            @Override
+            public void unauthorized() {
+
+            }
+
+        });
         super.onResume();
     }
 

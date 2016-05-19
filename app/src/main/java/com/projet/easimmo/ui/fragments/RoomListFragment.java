@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.projet.easimmo.R;
 import com.projet.easimmo.common.adapter.RoomAdapter;
@@ -37,16 +39,22 @@ import butterknife.ButterKnife;
 public class RoomListFragment extends Fragment {
     private PropertyDTO property;
     private List<RoomDTO> mRoomDTOList;
-    @Bind(R.id.room_list)
-    RecyclerView mRecyclerView;
     private RoomAdapter mAdapter;
     private ServiceProperties serviceProperties;
+
+    @Bind(R.id.roomList_fragment)
+    FrameLayout mFrameLayout;
+
+    @Bind(R.id.room_list)
+    RecyclerView mRecyclerView;
+
 
     @Bind(R.id.retrofit_swype_refresh_layout)
     SwipeRefreshLayout mRefreshLayout;
 
     @Bind(R.id.addRoomFab)
     FloatingActionButton addRoomFab;
+
     private RoomListCallback mCallback;
 
     @Override
@@ -111,6 +119,9 @@ public class RoomListFragment extends Fragment {
                     startActivity(intent);*/
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     DialogFragment dialog = new CreateRoomDialogFragment();
+                    Bundle bdl = new Bundle(1);
+                    bdl.putString("property_id", property.getmId());
+                    dialog.setArguments(bdl);
                     dialog.show(fm, "dialog");
                 }
             });

@@ -35,7 +35,11 @@ public class EDLActivity extends AppCompatActivity implements EDLEquipmentFragme
         setContentView(R.layout.activity_edl);
         ReportDTO reportDTO = (ReportDTO) getIntent().getSerializableExtra("report");
         PropertyDTO propertyDTO = (PropertyDTO) getIntent().getSerializableExtra("property");
-        setTitle("Report_"+reportDTO.getmId().substring(0,9));
+        if(reportDTO.getmType() != null){
+            setTitle(reportDTO.getmType()+"_"+reportDTO.getmId().substring(0,9));
+        }else {
+            setTitle("Report_" + reportDTO.getmId().substring(0, 9));
+        }
         ButterKnife.bind(this);
         List<Fragment> fList = new ArrayList<Fragment>();
         fList.add(GeneralEDLFragment.newInstance(reportDTO));

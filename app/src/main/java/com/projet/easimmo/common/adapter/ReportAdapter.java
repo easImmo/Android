@@ -36,7 +36,11 @@ public class ReportAdapter extends RecyclerView.Adapter<ReportAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ReportDTO report = mReportList.get(position);
-        holder.mNameTxv.setText("Report_"+report.getmId().substring(0,9));
+        if(report.getmType() != null){
+            holder.mNameTxv.setText(report.getmType()+"_"+report.getmId().substring(0,9));
+        }else {
+            holder.mNameTxv.setText("Report_" + report.getmId().substring(0, 9));
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String dateString = sdf.format(report.getmCreated_at());
         holder.mDateTxv.setText(dateString);

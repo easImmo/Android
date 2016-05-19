@@ -20,17 +20,21 @@ public class ReportDTO implements Serializable {
     @SerializedName("createdAt")
     private Date mCreated_at;
     private Date mUpdated_at;
+    @SerializedName("type")
+    private String mType;
+
 
 
     public ReportDTO() {
     }
 
-    public ReportDTO(PropertyDTO mProperty, List<AssessmentDTO> assessmentDTOList, Date mCreated_at, Date mUpdated_at, String mId) {
+    public ReportDTO(PropertyDTO mProperty, List<AssessmentDTO> assessmentDTOList, Date mCreated_at, Date mUpdated_at, String mId, String mType) {
         this.mProperty = mProperty;
         this.assessmentDTOList = assessmentDTOList;
         this.mCreated_at = mCreated_at;
         this.mUpdated_at = mUpdated_at;
         this.mId = mId;
+        this.mType = mType;
     }
 
     public String getmId() {
@@ -73,4 +77,11 @@ public class ReportDTO implements Serializable {
         this.mUpdated_at = mUpdated_at;
     }
 
+    public String getmType() {
+        return mType;
+    }
+
+    public void setmType(String mType) {
+        this.mType = mType;
+    }
 }

@@ -38,6 +38,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -76,7 +77,6 @@ public class EDLDetailActivity extends AppCompatActivity {
         _equipment_state.setText(" "+detail.getAssessmentDTO().getEquipmentStateDTO());
 
 
-
         PagerAdapter adapter = new CustomAdapter(EDLDetailActivity.this, detail.getAssessmentDTO().getImageDTOList());
 
         viewPager.setAdapter(adapter);
@@ -92,6 +92,19 @@ public class EDLDetailActivity extends AppCompatActivity {
             });
         }
     }
+
+    private void refresh(){
+        _equipment.setText(" "+detail.getEquipmentDTO().getEquipmentTypeDTO());
+        _equipment_state.setText(" "+detail.getAssessmentDTO().getEquipmentStateDTO());
+
+
+        PagerAdapter adapter = new CustomAdapter(EDLDetailActivity.this, detail.getAssessmentDTO().getImageDTOList());
+
+        viewPager.setAdapter(adapter);
+
+        mIndicator.setViewPager(viewPager);
+    }
+
 
     private void selectImage() {
         final CharSequence[] items = { "Prendre une Photo", "Choisir dans la gallerie",
@@ -157,12 +170,45 @@ public class EDLDetailActivity extends AppCompatActivity {
         int height = thumbnail.getHeight();
         thumbnail = Bitmap.createScaledBitmap(thumbnail, width, height, true);
 
-        //ivImage.setImageBitmap(thumbnail);
+        ServiceAssessments serviceAssessments = new ServiceAssessments();
+
+
+
+        // create RequestBody instance from file
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), destination);
+
+        // MultipartBody.Part is used to send also the actual file name
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("image", destination.getName(), requestFile);
+        RequestBody description =
+                RequestBody.create(
+                        MediaType.parse("multipart/form-data"), detail.getAssessmentDTO().getmId());
+
+        serviceAssessments.postImage(body, description, new ICallback<ImageDTO>() {
+            @Override
+            public void success(ImageDTO imageDTO) {
+                if(detail.getAssessmentDTO().getImageDTOList() == null){
+                    detail.getAssessmentDTO().setImageDTOList(new ArrayList<ImageDTO>());
+                }
+               detail.getAssessmentDTO().getImageDTOList().add(imageDTO);
+                refresh();
+            }
+
+            @Override
+            public void failure(Throwable error) {
+                System.out.println(error);
+            }
+
+            @Override
+            public void unauthorized() {
+
+            }
+        });
     }
 
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
-        System.out.println("DEBUT***************************************");
         Uri selectedImageUri = data.getData();
         String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
@@ -216,16 +262,19 @@ public class EDLDetailActivity extends AppCompatActivity {
 
         // MultipartBody.Part is used to send also the actual file name
         MultipartBody.Part body =
-                MultipartBody.Part.createFormData("picture", file.getName(), requestFile);
+                MultipartBody.Part.createFormData("image", file.getName(), requestFile);
         RequestBody description =
                 RequestBody.create(
                         MediaType.parse("multipart/form-data"), detail.getAssessmentDTO().getmId());
 
-        System.out.println("call WS ***********************");
         serviceAssessments.postImage(body, description, new ICallback<ImageDTO>() {
             @Override
             public void success(ImageDTO imageDTO) {
-                System.out.println("**************************************************");
+                if(detail.getAssessmentDTO().getImageDTOList() == null){
+                    detail.getAssessmentDTO().setImageDTOList(new ArrayList<ImageDTO>());
+                }
+                detail.getAssessmentDTO().getImageDTOList().add(imageDTO);
+                refresh();
             }
 
             @Override
@@ -238,12 +287,6 @@ public class EDLDetailActivity extends AppCompatActivity {
 
             }
         });
-        // Send image to API
-       // UploadService uploadService = new UploadService(getApplicationContext());
-        //uploadService.uploadFile(selectedImageUri);
-
-        // Set result in container
-        //ivImage.setImageBitmap(rotatedBitmap);
 
     }
 

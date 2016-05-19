@@ -21,7 +21,7 @@ public class AssessmentDTO implements Serializable {
     private String mComment;
     private Date mCreated_at;
     private Date mUpdated_at;
-    @SerializedName("image")
+    @SerializedName("images")
     private List<ImageDTO> imageDTOList;
 
     public AssessmentDTO() {

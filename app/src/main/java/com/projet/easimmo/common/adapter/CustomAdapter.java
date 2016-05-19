@@ -2,11 +2,14 @@ package com.projet.easimmo.common.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.projet.easimmo.R;
@@ -23,12 +26,14 @@ public class CustomAdapter extends PagerAdapter {
 
     Context context;
     List<ImageDTO> imageDTOList;
+    //int width, height;
     //int[] imageId = {R.drawable.image1, R.drawable.image2v, R.drawable.image3v};
 
     public CustomAdapter(Context context, List<ImageDTO> imageDTOs){
         this.context = context;
         imageDTOList = new ArrayList<>();
         imageDTOList.addAll(imageDTOs);
+
     }
 
 
@@ -41,13 +46,16 @@ public class CustomAdapter extends PagerAdapter {
         ImageDTO imageDTO = imageDTOList.get(position);
 
         String imageUri = "http://easimmoapi.nicolasdu.com/images/"+imageDTO.getmId();
-
+        System.out.println(imageUri);
         View viewItem = inflater.inflate(R.layout.image_item, container, false);
         //ImageView imageView = (ImageView) viewItem.findViewById(R.id.imageView);
         //imageView.setImageResource(imageId[position]);
 
+
+
         ImageView ivBasicImage = (ImageView) viewItem.findViewById(R.id.imageView);
-        Picasso.with(context).load(imageUri).into(ivBasicImage);
+        Picasso.with(context).load(imageUri).resize(1920,1200)
+                .centerCrop().into(ivBasicImage);
         ((ViewPager)container).addView(viewItem);
 
         return viewItem;

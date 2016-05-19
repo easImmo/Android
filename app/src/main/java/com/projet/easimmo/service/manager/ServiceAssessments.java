@@ -64,4 +64,23 @@ public class ServiceAssessments {
         });
     }
 
+    public void deleteAssessment(String report_id,final ICallback<AssessmentDTO> callback){
+        final Call<AssessmentDTO> call = mService.deleteAssessment(report_id);
+        call.enqueue(new Callback<AssessmentDTO>() {
+            @Override public void onResponse(Call<AssessmentDTO> call,
+                                             Response<AssessmentDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.success(response.body());
+                }
+                else if(response.code() == 401 || response.code() == 404){
+                    callback.unauthorized();
+                }
+            }
+
+            @Override public void onFailure(Call<AssessmentDTO> call, Throwable t) {
+                System.out.println(t);
+                callback.failure(t);
+            }
+        });
+    }
 }

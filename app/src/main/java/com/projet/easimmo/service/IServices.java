@@ -89,5 +89,8 @@ public interface IServices {
     @POST("images")
     Call<ImageDTO> upload(@Part MultipartBody.Part file, @Part("assessment_id") RequestBody assessment_id);
 
+    @DELETE("assessments/{assessment_id}")
+    Call<AssessmentDTO> deleteAssessment(@Path("assessment_id") String assessment_id);
+
 }
 

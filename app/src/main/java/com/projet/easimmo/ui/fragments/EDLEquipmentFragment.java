@@ -100,17 +100,46 @@ public class EDLEquipmentFragment extends Fragment {
             });
         }
 
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ServiceReports serviceReports = new ServiceReports();
+                serviceReports.getReport(reportDTO.getmId(), new ICallback<ReportDTO>() {
+
+                    @Override public void success(ReportDTO reportDTO2) {
+                        reportDTO = reportDTO2;
+                        mEdlDetailDisplayDTOs.clear();
+                        for(final AssessmentDTO assessmentDTO : reportDTO.getAssessmentDTOList()) {
+                            addInListEdlDetail(assessmentDTO);
+                        }
+                        mAdapter.notifyDataSetChanged();
+                        mRefreshLayout.setRefreshing(false);
+
+                    }
+
+                    @Override public void failure(Throwable error) {
+
+                    }
+
+                    @Override
+                    public void unauthorized() {
+
+                    }
+
+
+                });
+            }
+        });
+
         return rootView;
     }
 
     @Override
     public void onResume() {
-        System.out.println("***********************DEBITT********************************");
         ServiceReports serviceReports = new ServiceReports();
         serviceReports.getReport(reportDTO.getmId(), new ICallback<ReportDTO>() {
 
             @Override public void success(ReportDTO reportDTO2) {
-                System.out.println("*******************************************************");
                 reportDTO = reportDTO2;
                 mEdlDetailDisplayDTOs.clear();
                 for(final AssessmentDTO assessmentDTO : reportDTO.getAssessmentDTOList()) {

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by victor on 24/04/2016.
@@ -20,17 +21,20 @@ public class AssessmentDTO implements Serializable {
     private String mComment;
     private Date mCreated_at;
     private Date mUpdated_at;
+    @SerializedName("images")
+    private List<ImageDTO> imageDTOList;
 
     public AssessmentDTO() {
     }
 
-    public AssessmentDTO(String mId, String equipmentDTO, String equipmentStateDTO, String mComment, Date mCreated_at, Date mUpdated_at) {
+    public AssessmentDTO(String mId, String equipmentDTO, String equipmentStateDTO, String mComment, Date mCreated_at, Date mUpdated_at,List<ImageDTO> imageDTOList) {
         this.mId = mId;
         this.equipmentDTO = equipmentDTO;
         this.equipmentStateDTO = equipmentStateDTO;
         this.mComment = mComment;
         this.mCreated_at = mCreated_at;
         this.mUpdated_at = mUpdated_at;
+        this.imageDTOList = imageDTOList;
     }
 
     public String getmId() {
@@ -79,5 +83,13 @@ public class AssessmentDTO implements Serializable {
 
     public void setmUpdated_at(Date mUpdated_at) {
         this.mUpdated_at = mUpdated_at;
+    }
+
+    public List<ImageDTO> getImageDTOList() {
+        return imageDTOList;
+    }
+
+    public void setImageDTOList(List<ImageDTO> imageDTOList) {
+        this.imageDTOList = imageDTOList;
     }
 }

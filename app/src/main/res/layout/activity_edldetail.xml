@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
-        </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,8 +46,17 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:layout_marginTop="@dimen/activity_vertical_margin"/>
-        </LinearLayout>
+    </LinearLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addImageFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add_a_photo_white_24dp" />
     <!-- Top Sliding Banners -->
+
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -72,6 +81,7 @@
             app:pageColor="@color/white"
             app:snap="false" />
     </RelativeLayout>
+
 
 </LinearLayout>
 

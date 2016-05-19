@@ -1,6 +1,7 @@
 package com.projet.easimmo.ui.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -67,12 +68,20 @@ public class EDLListFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
 
-
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport
                 .OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 mCallback.onItemSelected(mReportDTOList.get(position), property);
+            }
+        });
+
+        ItemClickSupport.addTo(mRecyclerView).setOnItemLongClickListener(new ItemClickSupport
+                .OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
+                mCallback.onItemLongClicked(mReportDTOList.get(position),EDLListFragment.this);
+                return false;
             }
         });
 
@@ -109,9 +118,13 @@ public class EDLListFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    DialogFragment dialog = new CreateEdlDialogFragment();
-                    dialog.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
-
+                    CreateEdlDialogFragment dialog = new CreateEdlDialogFragment();
+                    dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            onResume();
+                        }
+                    });
                     dialog.show(fm, "dialog");
                 }
             });
@@ -175,5 +188,7 @@ public class EDLListFragment extends Fragment {
 
     public interface ReportListCallback{
         void onItemSelected(ReportDTO reportDTO, PropertyDTO propertyDTO);
+
+        void onItemLongClicked(ReportDTO reportDTO, EDLListFragment edlListFragment);
     }
 }

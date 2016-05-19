@@ -1,0 +1,91 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/title_assessment_create"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/assessment_create_title"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+        <TextView
+            android:id="@+id/sinistre_piece"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sinistre_piece" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Spinner
+                android:id="@+id/room_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/choose_roomType"
+                android:layout_marginBottom="24dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sinistre_equipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sinistre_equipment" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Spinner
+                android:id="@+id/equipment_type_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/choose_roomType"
+                android:layout_marginBottom="24dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sinistre_etat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sinistre_etat" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Spinner
+                android:id="@+id/equipment_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:prompt="@string/choose_roomType"
+                android:layout_marginBottom="24dp"/>
+        </LinearLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_send_assessment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:padding="12dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:text="Valider"
+            />
+    </LinearLayout>
+</FrameLayout>
+
+

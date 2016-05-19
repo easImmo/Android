@@ -19,7 +19,6 @@ import com.projet.easimmo.dto.RoomDTO;
 import com.projet.easimmo.dto.RoomTypeDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceManager;
-import com.projet.easimmo.service.manager.ServiceProperties;
 import com.projet.easimmo.service.manager.ServiceRooms;
 
 import java.util.ArrayList;
@@ -126,7 +125,7 @@ public class EditRoomActivity extends AppCompatActivity {
                                     public void failure(Throwable error) {
                                         error.printStackTrace();
                                         progressDialog.dismiss();
-                                        Snackbar.make(_coordinatorLayout, "Erreur lors de la création du de la piece", Snackbar.LENGTH_LONG).show();
+                                        Snackbar.make(_coordinatorLayout, "Erreur lors de la création de la piece", Snackbar.LENGTH_LONG).show();
                                     }
 
                                     @Override

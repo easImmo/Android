@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ImageView
@@ -11,7 +12,17 @@
         android:scaleType="fitXY"
         android:layout_alignParentEnd="true" />
 
-
+    <TextView
+        android:id="@+id/surface_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingStart="@dimen/fab_margin"
+        android:textColor="@color/white"
+        android:text="olel"
+        android:layout_alignStart="@+id/imgHeader"
+        android:layout_alignBottom="@+id/imgHeader" />
 
     <TextView
         android:id="@+id/name_content"
@@ -23,16 +34,32 @@
         android:textColor="@color/white"
         android:text="olel"
         android:layout_alignStart="@+id/imgHeader"
-        android:layout_alignBottom="@+id/imgHeader" />
+        android:layout_above="@+id/surface_content" />
+
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/retrofit_swype_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/imgHeader">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/equipment_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addEquipmentFab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/fab_margin"
-        android:src="@drawable/ic_add_white_24dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignBottom="@id/retrofit_swype_refresh_layout"
+        android:layout_alignEnd="@id/retrofit_swype_refresh_layout"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_add_white_24dp" />
+
+
 </RelativeLayout>
 
 

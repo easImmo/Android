@@ -3,6 +3,7 @@ package com.projet.easimmo.dto;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -61,4 +62,8 @@ public class RoomDTO implements Serializable {
     public void setEquipmentDTOList(List<EquipmentDTO> equipmentDTOList) {
         this.equipmentDTOList = equipmentDTOList;
     }
+
+   public String toString(){
+       return this.getRoomTypeDTO();
+   }
 }

@@ -22,6 +22,7 @@ import com.projet.easimmo.dto.UserDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.manager.ServiceManager;
 import com.projet.easimmo.service.manager.ServiceUser;
+import com.projet.easimmo.ui.activities.CreateUserActivity;
 import com.projet.easimmo.ui.activities.PropertiesActivity;
 
 import java.util.List;
@@ -70,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+        _signupLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                Intent intent = new Intent(getApplicationContext(), CreateUserActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void login() {

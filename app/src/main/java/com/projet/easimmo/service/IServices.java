@@ -1,5 +1,6 @@
 package com.projet.easimmo.service;
 
+import com.projet.easimmo.dto.AssessmentDTO;
 import com.projet.easimmo.dto.EquipmentDTO;
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.EquipmentTypeDTO;
@@ -12,6 +13,7 @@ import com.projet.easimmo.dto.UserDTO;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -57,11 +59,34 @@ public interface IServices {
     Call<UserDTO> login(@Field("email") String email, @Field("password") String password);
 
     @FormUrlEncoded
+    @POST("users")
+    Call<UserDTO> createUser(@Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
     @POST("rooms")
     Call<RoomDTO> postRoom(@Field("property_id") String property_id, @Field("roomType") String roomType, @Field("surface") String surface);
 
+    @GET("rooms/{room_id}")
+    Call<RoomDTO> getRoom(@Path("room_id") String room_id);
+
     @GET("equipments/{equipment_id}")
     Call<EquipmentDTO> getEquipment(@Path("equipment_id") String equipment_id);
+
+    @FormUrlEncoded
+    @POST("equipments")
+    Call<EquipmentDTO> postEquipment(@Field("room_id") String room_id, @Field("equipmentType") String equipmentType);
+
+
+    @FormUrlEncoded
+    @POST("reports")
+    Call<ReportDTO> postReport(@Field("property_id") String property_id, @Field("comment") String comment, @Field("type") String type);
+
+    @DELETE("reports/{report_id}")
+    Call<ReportDTO> deleteReport(@Path("report_id") String report_id);
+
+    @FormUrlEncoded
+    @POST("assessments")
+    Call<AssessmentDTO> postAssessment(@Field("report_id") String report_id, @Field("equipment_id") String equipment_id, @Field("equipmentState") String equipmentState, @Field("comment") String comment);
 
 }
 

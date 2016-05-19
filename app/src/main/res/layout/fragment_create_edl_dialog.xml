@@ -3,40 +3,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.projet.easimmo.ui.dialogFragments.CreateEdlDialogFragment">
+    tools:context="com.projet.easimmo.ui.dialogFragments.CreateEdlDialogFragment"
+    android:paddingLeft="60dp"
+    android:paddingRight="60dp">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="48dp"
-        android:paddingRight="48dp">
-
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/title_edl_create"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:text="@string/edl_create_title"
             android:textStyle="bold"
             android:textSize="24sp"
+            android:layout_marginBottom="24dp"
             android:layout_marginTop="@dimen/activity_vertical_margin" />
 
-        <Switch
-            android:id="@+id/flashlightButton"
-            android:layout_above="@+id/buttonStrobeLight"
-            android:layout_marginBottom="20dp"
-            android:textOn="Entrant"
-            android:textOff="Sortant"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent" />
-
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:id="@+id/label_edl_entrant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edl_entrant"
+                android:textSize="20sp"
+                android:layout_marginBottom="24dp"/>
+            <Switch
+                android:id="@+id/switchButton"
+                android:layout_marginBottom="24dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:id="@+id/label_edl_sortant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edl_sortant"
+                android:textSize="20sp"
+                android:layout_marginBottom="24dp"/>
+        </LinearLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_send_edl"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:backgroundTint="@color/colorPrimary"
@@ -44,5 +62,6 @@
             android:text="Valider"
             />
     </LinearLayout>
-
 </FrameLayout>
+
+

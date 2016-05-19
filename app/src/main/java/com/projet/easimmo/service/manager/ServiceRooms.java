@@ -1,6 +1,7 @@
 package com.projet.easimmo.service.manager;
 
 import com.projet.easimmo.dto.PropertyDTO;
+import com.projet.easimmo.dto.ReportDTO;
 import com.projet.easimmo.dto.RoomDTO;
 import com.projet.easimmo.service.ICallback;
 import com.projet.easimmo.service.IServices;
@@ -38,6 +39,24 @@ public class ServiceRooms {
             }
 
             @Override public void onFailure(Call<RoomDTO> call, Throwable t) {
+                callback.failure(t);
+            }
+        });
+    }
+
+    public void getRoom(String idRoom, final ICallback<RoomDTO> callback) {
+        final Call<RoomDTO> call = mService.getRoom(idRoom);
+        call.enqueue(new Callback<RoomDTO>() {
+            @Override public void onResponse(Call<RoomDTO> call,
+                                             Response<RoomDTO> response) {
+
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.success(response.body());
+                }
+            }
+
+            @Override public void onFailure(Call<RoomDTO> call, Throwable t) {
+                t.printStackTrace();
                 callback.failure(t);
             }
         });

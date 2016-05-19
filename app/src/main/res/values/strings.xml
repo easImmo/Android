@@ -14,6 +14,7 @@
     <string name="zip">Code Postal : </string>
     <string name="surface">Surface : </string>
     <string name="choose_roomType">Type de Pièce</string>
+    <string name="choose_equipmentType">Type d\'equipement</string>
     <string name="edl_date_created">Date de création : </string>
     <string name="edl_nb_problems">Nombre de problème(s) : </string>
     <string name="edl_equipment">Nom : </string>
@@ -21,4 +22,11 @@
     <string name="photos">Photo(s) : </string>
     <string name="edl_create_title">Créer un EDL</string>
     <string name="room_create_title">Création de pièce</string>
+    <string name="equipment_create_title">Création d\'équipment</string>
+    <string name="edl_entrant">Entrant</string>
+    <string name="edl_sortant">Sortant</string>
+    <string name="assessment_create_title">Créer un sinistre</string>
+    <string name="sinistre_piece">Pièce : </string>
+    <string name="sinistre_equipment">Equipement : </string>
+    <string name="sinistre_etat">Etat : </string>
 </resources>

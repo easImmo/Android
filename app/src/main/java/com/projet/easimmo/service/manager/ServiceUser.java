@@ -46,4 +46,24 @@ public class ServiceUser {
         });
     }
 
+    public void create(String email, String password, final ICallback<UserDTO> callback) {
+        final Call<UserDTO> call = mService.createUser(email,password);
+        call.enqueue(new Callback<UserDTO>() {
+            @Override public void onResponse(Call<UserDTO> call,
+                                             Response<UserDTO> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.success(response.body());
+                }
+                else if(response.code() == 401){
+                    callback.unauthorized();
+                    //System.out.println("FAILURE*************************");
+                }
+            }
+
+            @Override public void onFailure(Call<UserDTO> call, Throwable t) {
+                callback.failure(t);
+            }
+        });
+    }
+
 }

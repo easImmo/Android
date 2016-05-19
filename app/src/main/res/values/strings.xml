@@ -23,4 +23,8 @@
     <string name="edl_entrant">Entrant</string>
     <string name="edl_sortant">Sortant</string>
     <string name="assessment_create_title">Créer un sinistre</string>
+    <string name="sinistre_piece">Pièce : </string>
+    <string name="sinistre_equipment">Equipement : </string>
+    <string name="sinistre_etat">Etat : </string>
+
 </resources>

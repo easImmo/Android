@@ -37,4 +37,8 @@ public class EquipmentStateDTO implements Serializable {
     public void setmName(String mName) {
         this.mName = mName;
     }
+
+    public String toString(){
+        return this.mName;
+    }
 }

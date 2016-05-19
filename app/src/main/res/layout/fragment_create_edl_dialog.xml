@@ -36,7 +36,7 @@
                 android:textSize="20sp"
                 android:layout_marginBottom="24dp"/>
             <Switch
-                android:id="@+id/flashlightButton"
+                android:id="@+id/switchButton"
                 android:layout_marginBottom="24dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"

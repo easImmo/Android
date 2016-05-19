@@ -1,5 +1,7 @@
 package com.projet.easimmo.ui.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +17,8 @@ import com.projet.easimmo.common.util.GlobalVar;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.ReportDTO;
 import com.projet.easimmo.dto.RoomDTO;
+import com.projet.easimmo.service.ICallback;
+import com.projet.easimmo.service.manager.ServiceReports;
 import com.projet.easimmo.ui.fragments.EDLListFragment;
 import com.projet.easimmo.ui.fragments.GeneralPropertyFragment;
 import com.projet.easimmo.ui.fragments.RoomListFragment;
@@ -70,6 +74,48 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
         intent.putExtra("property", propertyDTO);
         startActivity(intent);
     }
+
+    @Override
+    public void onItemLongClicked(final ReportDTO reportDTO) {
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        ServiceReports serviceReports = new ServiceReports();
+                        serviceReports.deleteReport(reportDTO.getmId(), new ICallback<ReportDTO>() {
+
+                            @Override
+                            public void success(ReportDTO reportDTO1) {
+                            }
+
+                            @Override
+                            public void failure(Throwable error) {
+                            }
+
+                            @Override
+                            public void unauthorized() {
+
+                            }
+
+                        });
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Etes vous sûr de vouloir supprimer cet état des lieux ?").setPositiveButton("Oui", dialogClickListener)
+                .setNegativeButton("Non", dialogClickListener).show();
+
+
+    }
+
 
     @Override
     public void onItemSelected(RoomDTO roomDTO) {

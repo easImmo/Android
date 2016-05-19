@@ -50,7 +50,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.projet.easimmo.ui.activities.PropertyActivity" />
         </activity>
-        <activity android:name=".ui.activities.EDLDetailActivity"></activity>
+        <activity android:name=".ui.activities.EDLDetailActivity" />
+        <activity android:name=".ui.activities.CreateUserActivity"></activity>
     </application>
 
 </manifest>

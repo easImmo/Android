@@ -1,5 +1,6 @@
 package com.projet.easimmo.service;
 
+import com.projet.easimmo.dto.AssessmentDTO;
 import com.projet.easimmo.dto.EquipmentDTO;
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.EquipmentTypeDTO;
@@ -58,6 +59,10 @@ public interface IServices {
     Call<UserDTO> login(@Field("email") String email, @Field("password") String password);
 
     @FormUrlEncoded
+    @POST("users")
+    Call<UserDTO> createUser(@Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
     @POST("rooms")
     Call<RoomDTO> postRoom(@Field("property_id") String property_id, @Field("roomType") String roomType, @Field("surface") String surface);
 
@@ -70,6 +75,10 @@ public interface IServices {
 
     @DELETE("reports/{report_id}")
     Call<ReportDTO> deleteReport(@Path("report_id") String report_id);
+
+    @FormUrlEncoded
+    @POST("assessments")
+    Call<AssessmentDTO> postAssessment(@Field("report_id") String report_id, @Field("equipment_id") String equipment_id, @Field("equipmentState") String equipmentState, @Field("comment") String comment);
 
 }
 

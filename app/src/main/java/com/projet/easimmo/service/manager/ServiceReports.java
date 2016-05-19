@@ -61,4 +61,22 @@ public class ServiceReports {
         });
     }
 
+    public void getReport(String idReport, final ICallback<ReportDTO> callback) {
+        final Call<ReportDTO> call = mService.getReport(idReport);
+        call.enqueue(new Callback<ReportDTO>() {
+            @Override public void onResponse(Call<ReportDTO> call,
+                                             Response<ReportDTO> response) {
+
+                if (response.isSuccessful() && response.body() != null) {
+                    callback.success(response.body());
+                }
+            }
+
+            @Override public void onFailure(Call<ReportDTO> call, Throwable t) {
+                t.printStackTrace();
+                callback.failure(t);
+            }
+        });
+    }
+
 }

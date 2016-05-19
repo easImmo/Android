@@ -2,6 +2,8 @@ package com.projet.easimmo.ui.dialogFragments;
 
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -10,16 +12,21 @@ import android.view.Window;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.projet.easimmo.R;
 import com.projet.easimmo.common.util.GlobalVar;
+import com.projet.easimmo.dto.AssessmentDTO;
 import com.projet.easimmo.dto.EquipmentDTO;
 import com.projet.easimmo.dto.EquipmentStateDTO;
 import com.projet.easimmo.dto.PropertyDTO;
 import com.projet.easimmo.dto.RoomDTO;
 import com.projet.easimmo.dto.RoomTypeDTO;
 import com.projet.easimmo.service.ICallback;
+import com.projet.easimmo.service.manager.ServiceAssessments;
 import com.projet.easimmo.service.manager.ServiceManager;
 import com.projet.easimmo.ui.fragments.GeneralPropertyFragment;
 
@@ -34,18 +41,35 @@ import butterknife.ButterKnife;
 
 public class CreateAssessmentDialog extends DialogFragment {
 
+    private DialogInterface.OnDismissListener onDismissListener;
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
+        }
+    }
+
     @Bind(R.id.room_type_spinner)
     Spinner _roomType;
     @Bind(R.id.equipment_type_spinner)
     Spinner _equipmentType;
     @Bind(R.id.equipment_state)
     Spinner _equipmentState;
+    @Bind(R.id.btn_send_assessment)
+    Button _sendBtn;
     private ArrayList<RoomDTO> roomTypeStringsList;
     private ArrayList<EquipmentDTO> equipmentTypeStringsList;
     private ArrayList<EquipmentStateDTO> equipmentStateList;
 
     private PropertyDTO propertyDTO;
     private ServiceManager serviceManager;
+    private ServiceAssessments serviceAssessments;
 
     public CreateAssessmentDialog()
     {}
@@ -113,7 +137,6 @@ public class CreateAssessmentDialog extends DialogFragment {
 
         });
 
-
         _roomType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             protected Adapter initializedAdapter=null;
@@ -135,6 +158,49 @@ public class CreateAssessmentDialog extends DialogFragment {
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
+            }
+        });
+
+        serviceAssessments = new ServiceAssessments();
+        _sendBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                final ProgressDialog progressDialog = new ProgressDialog(getActivity(),
+                        R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("Patientez...");
+                progressDialog.show();
+                if(((EquipmentDTO)_equipmentType.getSelectedItem()) == null){
+                    progressDialog.dismiss();
+                    Toast.makeText(getActivity().getBaseContext(), "L 'équipement selectionné n'est pas valide", Toast.LENGTH_LONG).show();
+                }else {
+                    new android.os.Handler().post(
+                            new Runnable() {
+                                public void run() {
+                                    serviceAssessments.postAssessment((String) getArguments().get("report_id"), ((EquipmentDTO) _equipmentType.getSelectedItem()).getmId(), ((EquipmentStateDTO) _equipmentState.getSelectedItem()).getmName(), "", new ICallback<AssessmentDTO>() {
+                                        @Override
+                                        public void success(AssessmentDTO assessmentDTO) {
+                                            progressDialog.dismiss();
+                                            dismiss();
+                                        }
+
+                                        @Override
+                                        public void failure(Throwable error) {
+                                            error.printStackTrace();
+                                            progressDialog.dismiss();
+                                            Toast.makeText(getActivity().getBaseContext(), "Erreur lors de la création du sinistre", Toast.LENGTH_LONG).show();
+                                        }
+
+                                        @Override
+                                        public void unauthorized() {
+
+                                        }
+                                    });
+                                }
+                            });
+                }
             }
         });
 

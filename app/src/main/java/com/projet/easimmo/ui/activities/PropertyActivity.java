@@ -76,7 +76,7 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
     }
 
     @Override
-    public void onItemLongClicked(final ReportDTO reportDTO) {
+    public void onItemLongClicked(final ReportDTO reportDTO, final EDLListFragment edlListFragment) {
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
@@ -88,15 +88,17 @@ public class PropertyActivity extends AppCompatActivity implements EDLListFragme
 
                             @Override
                             public void success(ReportDTO reportDTO1) {
+                                edlListFragment.onResume();
                             }
 
                             @Override
                             public void failure(Throwable error) {
+                                edlListFragment.onResume();
                             }
 
                             @Override
                             public void unauthorized() {
-
+                                System.out.println("unahu");
                             }
 
                         });

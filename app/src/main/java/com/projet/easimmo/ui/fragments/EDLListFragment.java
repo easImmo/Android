@@ -80,7 +80,7 @@ public class EDLListFragment extends Fragment {
                 .OnItemLongClickListener() {
             @Override
             public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
-                mCallback.onItemLongClicked(mReportDTOList.get(position));
+                mCallback.onItemLongClicked(mReportDTOList.get(position),EDLListFragment.this);
                 return false;
             }
         });
@@ -189,6 +189,6 @@ public class EDLListFragment extends Fragment {
     public interface ReportListCallback{
         void onItemSelected(ReportDTO reportDTO, PropertyDTO propertyDTO);
 
-        void onItemLongClicked(ReportDTO reportDTO);
+        void onItemLongClicked(ReportDTO reportDTO, EDLListFragment edlListFragment);
     }
 }

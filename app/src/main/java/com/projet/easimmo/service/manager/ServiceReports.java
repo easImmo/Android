@@ -55,6 +55,7 @@ public class ServiceReports {
             }
 
             @Override public void onFailure(Call<ReportDTO> call, Throwable t) {
+                System.out.println(t);
                 callback.failure(t);
             }
         });
